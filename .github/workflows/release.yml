@@ -44,8 +44,20 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+      - name: install openapi-generator
+        run: |
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/${OPENAPI_GENERATOR_VERSION}/openapi-generator-cli-${OPENAPI_GENERATOR_VERSION}.jar -O openapi-generator-cli.jar
+        env:
+          OPENAPI_GENERATOR_VERSION: 6.3.0
       - name: build
         run: sh ./generate.sh
+      - name: uninstall openapi-generator
+        run: rm openapi-generator-cli.jar
       - name: git commit and push
         run: |
           git config user.name "GitHub Actions"
