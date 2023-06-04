@@ -14,7 +14,7 @@ jobs:
       has_diff: ${{ steps.check-diff.outputs.has_diff }}
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: restore diff cache
         uses: actions/cache@v3
         with:
@@ -42,6 +42,8 @@ jobs:
     needs: check-diff
     if: needs.check-diff.outputs.has_diff == 'true'
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
       - name: build
         run: sh ./generate.sh
       - name: git commit and push
