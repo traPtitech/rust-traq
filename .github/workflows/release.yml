@@ -73,3 +73,5 @@ jobs:
       - name: create pull request
         run: |
           gh pr create --title "CI: regenerate [skip ci]" --body "" --base main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
