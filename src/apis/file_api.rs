@@ -352,7 +352,7 @@ pub async fn get_thumbnail_image(
 /// 指定したチャンネルにファイルをアップロードします。 アーカイブされているチャンネルにはアップロード出来ません。
 pub async fn post_file(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    _file: std::path::PathBuf,
     channel_id: &str,
 ) -> Result<crate::models::FileInfo, Error<PostFileError>> {
     let local_var_configuration = configuration;
