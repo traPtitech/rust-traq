@@ -1,0 +1,56 @@
+name: Regenerate
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: openapi-regenerate
+
+jobs:
+  check-diff:
+    name: release
+    runs-on: ubuntu-latest
+    outputs:
+      has_diff: ${{ steps.check-diff.outputs.has_diff }}
+    steps:
+      - name: restore diff cache
+        uses: actions/cache@v3
+        with:
+          path: ./tmp
+          key: diff
+      - name: Check diff
+        id: check-diff
+        run: |
+          touch tmp
+          git clone https://github.com/traPtitech/traQ
+          cd traQ
+          git log --oneline -1 -- .gitignore | sed -e "s/ .*$//" > ../tmp_new
+          cd ..
+          rm -rf traQ
+          cat tmp_new
+          if diff tmp tmp_new > /dev/null; then
+            echo "::set-output name=has_diff::false"
+          else
+            echo "::set-output name=has_diff::true"
+          fi
+          mv tmp_new tmp
+
+  regenerate:
+    runs-on: ubuntu-latest
+    needs: check-diff
+    if: needs.check-diff.outputs.has_diff == 'true'
+    steps:
+      - name: build
+        run: sh ./generate.sh
+      - name: git commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          BRANCH_NAME="update-$(date +'%Y%m%d%H%M%S')"
+          git switch -c "$BRANCH_NAME"
+          git add .
+          git commit -m "CI: regenerate [skip ci]" --author="H1rono <54711422+H1rono@users.noreply.github.com>"
+          git push origin "$BRANCH_NAME"
+      - name: create pull request
+        run: |
+          gh pr create --title "CI: regenerate [skip ci]" --body "" --base main
