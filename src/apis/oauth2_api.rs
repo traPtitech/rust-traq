@@ -11,7 +11,10 @@
 use reqwest;
 
 use super::{configuration, Error};
-use crate::apis::ResponseContent;
+use crate::{
+    apis::ResponseContent,
+    models::{OAuth2Prompt, OAuth2ResponseType},
+};
 
 /// struct for typed errors of method [`create_client`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
