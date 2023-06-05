@@ -31,9 +31,9 @@ jobs:
           rm -rf traQ
           cat tmp_new
           if diff tmp tmp_new > /dev/null; then
-            echo "::set-output name=has_diff::false"
+            echo "has_diff=false" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=has_diff::true"
+            echo "has_diff=true" >> "$GITHUB_OUTPUT"
           fi
           mv tmp_new tmp
 
@@ -72,6 +72,6 @@ jobs:
           git push origin "$BRANCH_NAME"
       - name: create pull request
         run: |
-          gh pr create --title "CI: regenerate [skip ci]" --body "" --base main
+          gh pr create --title "CI: regenerate" --body "" --base main --assignee H1rono
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
