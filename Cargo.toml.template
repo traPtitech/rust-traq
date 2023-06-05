@@ -1,6 +1,6 @@
 [package]
 name = "traq"
-version = "3.0.0"
+version = "0.1.0"
 authors = ["OpenAPI Generator team and contributors"]
 description = "traQ v3 API"
 license = "MIT"
