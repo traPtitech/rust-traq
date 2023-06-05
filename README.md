@@ -1,12 +1,11 @@
 # rust-traq
 
-[![Rust](https://github.com/H1rono/rust-traq/actions/workflows/rust.yml/badge.svg)](https://github.com/H1rono/rust-traq/actions/workflows/rust.yml)
-[![Release](https://github.com/H1rono/rust-traq/actions/workflows/release.yml/badge.svg)](https://github.com/H1rono/rust-traq/actions/workflows/release.yml)
-[![LICENSE](https://img.shields.io/github/license/H1rono/rust-traq)](https://github.com/H1rono/rust-traq/blob/main/LICENSE)
-<!--
-[![GitHub release](https://img.shields.io/github/v/release/H1rono/rust-traq?logo=github)](https://github.com/H1rono/rust-traq/releases/latest)
+[![Rust](https://github.com/traPtitech/rust-traq/actions/workflows/rust.yml/badge.svg)](https://github.com/traPtitech/rust-traq/actions/workflows/rust.yml)
+[![Release](https://github.com/traPtitech/rust-traq/actions/workflows/release.yml/badge.svg)](https://github.com/traPtitech/rust-traq/actions/workflows/release.yml)
+[![LICENSE](https://img.shields.io/github/license/traPtitech/rust-traq)](https://github.com/traPtitech/rust-traq/blob/main/LICENSE)
+
+[![GitHub release](https://img.shields.io/github/v/release/traPtitech/rust-traq?logo=github)](https://github.com/traPtitech/rust-traq/releases/latest)
 [![crate](https://img.shields.io/crates/v/traq?logo=rust)](https://crates.io/crates/traq)
--->
 
 :warning: Community Driven :warning: This is a client library for the traQ API, written in Rust.
 
