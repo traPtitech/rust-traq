@@ -26,7 +26,7 @@ jobs:
           touch tmp
           git clone https://github.com/traPtitech/traQ
           cd traQ
-          git log --oneline -1 -- .gitignore | sed -e "s/ .*$//" > ../tmp_new
+          git log --oneline -1 -- 'docs/v3-api.yaml' | sed -e "s/ .*$//" > ../tmp_new
           cd ..
           rm -rf traQ
           cat tmp_new
