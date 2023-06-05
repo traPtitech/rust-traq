@@ -2,8 +2,12 @@
 name = "traq"
 version = "0.1.0"
 authors = ["OpenAPI Generator team and contributors", "H1rono"]
-description = "traQ v3 API"
-license = "MIT"
+description = "⚠️ Community Driven ⚠️ traQ v3 API"
+license-file = "LICENSE"
+readme = "README.md"
+repository = "https://github.com/traPtitech/rust-traq"
+documentation = "https://github.com/traPtitech/rust-traq/tree/main/docs"
+keywords = ["traq", "openapi"]
 edition = "2021"
 
 [dependencies]
