@@ -8,7 +8,7 @@ concurrency:
 
 jobs:
   check-diff:
-    name: release
+    name: check diff
     runs-on: ubuntu-latest
     outputs:
       has_diff: ${{ steps.check-diff.outputs.has_diff }}
@@ -38,6 +38,7 @@ jobs:
           mv tmp_new tmp
 
   regenerate:
+    name: regenerate
     runs-on: ubuntu-latest
     needs: check-diff
     if: needs.check-diff.outputs.has_diff == 'true'
