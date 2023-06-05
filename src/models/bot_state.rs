@@ -14,25 +14,25 @@
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum BotState {
     #[serde(rename = "0")]
-    deactivated,
+    Deactivated,
     #[serde(rename = "1")]
-    active,
+    Active,
     #[serde(rename = "2")]
-    suspended,
+    Suspended,
 }
 
 impl ToString for BotState {
     fn to_string(&self) -> String {
         match self {
-            Self::deactivated => String::from("0"),
-            Self::active => String::from("1"),
-            Self::suspended => String::from("2"),
+            Self::Deactivated => String::from("0"),
+            Self::Active => String::from("1"),
+            Self::Suspended => String::from("2"),
         }
     }
 }
 
 impl Default for BotState {
     fn default() -> BotState {
-        Self::deactivated
+        Self::Deactivated
     }
 }
