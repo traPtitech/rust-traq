@@ -5,7 +5,4 @@ java -jar openapi-generator-cli.jar generate \
     -i "${SRC_URL}" \
     -g rust
 
-rm Cargo.toml
-cp Cargo.toml.template Cargo.toml
-
 cargo fmt
