@@ -1,5 +1,4 @@
-Cargo.toml
-README.md
+docs/README.md
 docs/ActiveOAuth2Token.md
 docs/ActivityApi.md
 docs/ActivityTimelineMessage.md

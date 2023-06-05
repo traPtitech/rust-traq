@@ -14,25 +14,25 @@
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ChannelSubscribeLevel {
     #[serde(rename = "0")]
-    None,
+    none,
     #[serde(rename = "1")]
-    Subscribed,
+    subscribed,
     #[serde(rename = "2")]
-    Notified,
+    notified,
 }
 
 impl ToString for ChannelSubscribeLevel {
     fn to_string(&self) -> String {
         match self {
-            Self::None => String::from("0"),
-            Self::Subscribed => String::from("1"),
-            Self::Notified => String::from("2"),
+            Self::none => String::from("0"),
+            Self::subscribed => String::from("1"),
+            Self::notified => String::from("2"),
         }
     }
 }
 
 impl Default for ChannelSubscribeLevel {
     fn default() -> ChannelSubscribeLevel {
-        Self::None
+        Self::none
     }
 }

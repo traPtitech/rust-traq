@@ -162,6 +162,7 @@ Class | Method | HTTP request | Description
 *Oauth2Api* | [**post_o_auth2_token**](Oauth2Api.md#post_o_auth2_token) | **POST** /oauth2/token | OAuth2 トークンエンドポイント
 *Oauth2Api* | [**revoke_my_token**](Oauth2Api.md#revoke_my_token) | **DELETE** /users/me/tokens/{tokenId} | トークンの認可を取り消す
 *Oauth2Api* | [**revoke_o_auth2_token**](Oauth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | OAuth2 トークン無効化エンドポイント
+*OgpApi* | [**delete_ogp_cache**](OgpApi.md#delete_ogp_cache) | **DELETE** /ogp/cache | OGP情報のキャッシュを削除
 *OgpApi* | [**get_ogp**](OgpApi.md#get_ogp) | **GET** /ogp | OGP情報を取得
 *PinApi* | [**create_pin**](PinApi.md#create_pin) | **POST** /messages/{messageId}/pin | ピン留めする
 *PinApi* | [**get_channel_pins**](PinApi.md#get_channel_pins) | **GET** /channels/{channelId}/pins | チャンネルピンのリストを取得
