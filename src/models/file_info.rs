@@ -69,11 +69,7 @@ impl FileInfo {
             is_animated_image,
             created_at,
             thumbnails,
-            thumbnail: if let Some(x) = thumbnail {
-                Some(Box::new(x))
-            } else {
-                None
-            },
+            thumbnail: thumbnail.map(Box::new),
             channel_id,
             uploader_id,
         }
