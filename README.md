@@ -7,14 +7,15 @@
 [![GitHub release](https://img.shields.io/github/v/release/traPtitech/rust-traq?logo=github)](https://github.com/traPtitech/rust-traq/releases/latest)
 [![crate](https://img.shields.io/crates/v/traq?logo=rust)](https://crates.io/crates/traq)
 
-:warning: Community Driven :warning: This is a client library for the traQ API, written in Rust.
+⚠️ Community Driven ⚠️ This is a client library for the traQ API, written in Rust.
 
 This crate is updated using [openapi-generator](https://openapi-generator.tech).
 
 ## Example
 
+Add this crate using `cargo add traq`, then write in `main.rs`:
+
 ```rust
-// `traq` will be the name of this crate
 use traq::apis::{channel_api, configuration};
 
 #[tokio::main]
