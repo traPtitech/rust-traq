@@ -26,7 +26,6 @@ pub enum DeleteOgpCacheError {
 #[serde(untagged)]
 pub enum GetOgpError {
     Status400(),
-    Status404(),
     UnknownValue(serde_json::Value),
 }
 
@@ -75,7 +74,7 @@ pub async fn delete_ogp_cache(
     }
 }
 
-/// OGP情報を取得します。
+/// 指定されたURLのOGP情報を取得します。 指定されたURLに対するOGP情報が見つからなかった場合、typeがemptyに設定された空のOGP情報を返します。
 pub async fn get_ogp(
     configuration: &configuration::Configuration,
     url: &str,

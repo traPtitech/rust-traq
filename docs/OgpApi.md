@@ -44,7 +44,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::Ogp get_ogp(url)
 OGP情報を取得
 
-OGP情報を取得します。
+指定されたURLのOGP情報を取得します。 指定されたURLに対するOGP情報が見つからなかった場合、typeがemptyに設定された空のOGP情報を返します。 
 
 ### Parameters
 
