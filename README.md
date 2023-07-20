@@ -24,7 +24,6 @@ async fn main() {
         bearer_access_token: env::var("BOT_ACCESS_TOKEN").ok(),
         ..Default::default()
     };
-    // #general
     let res = channel_api::get_channels(&conf, Some(true)).await;
     println!("{:?}", res);
 }
