@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.1.2] - 2023-07-21
+
+### Fixed
+
+- Fixed some JSON parsing failures ([#5](https://github.com/traPtitech/rust-traq/issues/5))
+
 ## [0.1.1] - 2023-06-16
 
 ### Added
@@ -24,5 +30,6 @@ and this project adheres to [Semantic Versioning].
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
 
 <!-- Versions -->
+[0.1.2]: https://github.com/traPtitech/rust-traq/compare/v0.1.1..v0.1.2
 [0.1.1]: https://github.com/traPtitech/rust-traq/compare/v0.1.0..v0.1.1
 [0.1.0]: https://github.com/traPtitech/rust-traq/releases/tag/v0.1.0
