@@ -326,6 +326,7 @@ Class | Method | HTTP request | Description
  - [StampHistoryEntry](StampHistoryEntry.md)
  - [StampPalette](StampPalette.md)
  - [StampStats](StampStats.md)
+ - [StampWithThumbnail](StampWithThumbnail.md)
  - [SubscribersChangedEvent](SubscribersChangedEvent.md)
  - [Tag](Tag.md)
  - [ThumbnailInfo](ThumbnailInfo.md)

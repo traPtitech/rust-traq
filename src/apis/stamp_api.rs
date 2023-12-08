@@ -890,7 +890,7 @@ pub async fn get_stamps(
     configuration: &configuration::Configuration,
     include_unicode: Option<bool>,
     r#type: Option<&str>,
-) -> Result<Vec<crate::models::Stamp>, Error<GetStampsError>> {
+) -> Result<Vec<crate::models::StampWithThumbnail>, Error<GetStampsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

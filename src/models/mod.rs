@@ -192,6 +192,8 @@ pub mod stamp_palette;
 pub use self::stamp_palette::StampPalette;
 pub mod stamp_stats;
 pub use self::stamp_stats::StampStats;
+pub mod stamp_with_thumbnail;
+pub use self::stamp_with_thumbnail::StampWithThumbnail;
 pub mod subscribers_changed_event;
 pub use self::subscribers_changed_event::SubscribersChangedEvent;
 pub mod tag;

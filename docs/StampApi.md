@@ -479,7 +479,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_stamps
 
-> Vec<crate::models::Stamp> get_stamps(include_unicode, r#type)
+> Vec<crate::models::StampWithThumbnail> get_stamps(include_unicode, r#type)
 スタンプリストを取得
 
 スタンプのリストを取得します。
@@ -494,7 +494,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Stamp>**](Stamp.md)
+[**Vec<crate::models::StampWithThumbnail>**](StampWithThumbnail.md)
 
 ### Authorization
 
