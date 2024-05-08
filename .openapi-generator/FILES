@@ -60,6 +60,8 @@ docs/Oauth2Api.md
 docs/Ogp.md
 docs/OgpApi.md
 docs/OgpMedia.md
+docs/OidcTraqUserInfo.md
+docs/OidcUserInfo.md
 docs/ParentChangedEvent.md
 docs/PatchBotRequest.md
 docs/PatchChannelRequest.md
@@ -214,6 +216,8 @@ src/models/o_auth2_scope.rs
 src/models/o_auth2_token.rs
 src/models/ogp.rs
 src/models/ogp_media.rs
+src/models/oidc_traq_user_info.rs
+src/models/oidc_user_info.rs
 src/models/parent_changed_event.rs
 src/models/patch_bot_request.rs
 src/models/patch_channel_request.rs
