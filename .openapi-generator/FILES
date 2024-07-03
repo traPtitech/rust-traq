@@ -60,6 +60,8 @@ docs/Oauth2Api.md
 docs/Ogp.md
 docs/OgpApi.md
 docs/OgpMedia.md
+docs/OidcTraqUserInfo.md
+docs/OidcUserInfo.md
 docs/ParentChangedEvent.md
 docs/PatchBotRequest.md
 docs/PatchChannelRequest.md
@@ -106,6 +108,7 @@ docs/PutChannelTopicRequest.md
 docs/PutMyPasswordRequest.md
 docs/PutNotifyCitationRequest.md
 docs/PutUserPasswordRequest.md
+docs/Session.md
 docs/Stamp.md
 docs/StampApi.md
 docs/StampHistoryEntry.md
@@ -137,7 +140,6 @@ docs/VersionFlags.md
 docs/VisibilityChangedEvent.md
 docs/WebRtcAuthenticateResult.md
 docs/WebRtcUserState.md
-docs/WebRtcUserStateSessionsInner.md
 docs/Webhook.md
 docs/WebhookApi.md
 docs/WebrtcApi.md
@@ -214,6 +216,8 @@ src/models/o_auth2_scope.rs
 src/models/o_auth2_token.rs
 src/models/ogp.rs
 src/models/ogp_media.rs
+src/models/oidc_traq_user_info.rs
+src/models/oidc_user_info.rs
 src/models/parent_changed_event.rs
 src/models/patch_bot_request.rs
 src/models/patch_channel_request.rs
@@ -258,6 +262,7 @@ src/models/put_channel_topic_request.rs
 src/models/put_my_password_request.rs
 src/models/put_notify_citation_request.rs
 src/models/put_user_password_request.rs
+src/models/session.rs
 src/models/stamp.rs
 src/models/stamp_history_entry.rs
 src/models/stamp_palette.rs
@@ -285,5 +290,4 @@ src/models/version_flags.rs
 src/models/visibility_changed_event.rs
 src/models/web_rtc_authenticate_result.rs
 src/models/web_rtc_user_state.rs
-src/models/web_rtc_user_state_sessions_inner.rs
 src/models/webhook.rs
