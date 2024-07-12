@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**post_o_auth2_authorize**](Oauth2Api.md#post_o_auth2_authorize) | **POST** /oauth2/authorize | OAuth2 認可エンドポイント
 [**post_o_auth2_authorize_decide**](Oauth2Api.md#post_o_auth2_authorize_decide) | **POST** /oauth2/authorize/decide | OAuth2 認可承諾API
 [**post_o_auth2_token**](Oauth2Api.md#post_o_auth2_token) | **POST** /oauth2/token | OAuth2 トークンエンドポイント
+[**revoke_client_tokens**](Oauth2Api.md#revoke_client_tokens) | **DELETE** /clients/{clientId}/tokens | OAuthクライアントのトークンを削除
 [**revoke_my_token**](Oauth2Api.md#revoke_my_token) | **DELETE** /users/me/tokens/{tokenId} | トークンの認可を取り消す
 [**revoke_o_auth2_token**](Oauth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | OAuth2 トークン無効化エンドポイント
 
@@ -339,6 +340,36 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## revoke_client_tokens
+
+> revoke_client_tokens(client_id)
+OAuthクライアントのトークンを削除
+
+自分が許可している指定したOAuthクライアントのアクセストークンを全てRevokeします。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**client_id** | **String** | OAuth2クライアントUUID | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
