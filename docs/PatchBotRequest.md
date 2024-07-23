@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **endpoint** | Option<**String**> | BOTサーバーエンドポイント | [optional]
 **developer_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> | 移譲先の開発者UUID | [optional]
 **subscribe_events** | Option<**Vec<String>**> | 購読するイベント | [optional]
+**bio** | Option<**String**> | 自己紹介(biography) | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

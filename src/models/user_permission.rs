@@ -127,6 +127,8 @@ pub enum UserPermission {
     RegisterUser,
     #[serde(rename = "get_me")]
     GetMe,
+    #[serde(rename = "get_oidc_userinfo")]
+    GetOIDCUserInfo,
     #[serde(rename = "edit_me")]
     EditMe,
     #[serde(rename = "change_my_icon")]
@@ -237,6 +239,7 @@ impl ToString for UserPermission {
             Self::GetUser => String::from("get_user"),
             Self::RegisterUser => String::from("register_user"),
             Self::GetMe => String::from("get_me"),
+            Self::GetOIDCUserInfo => String::from("get_oidc_userinfo"),
             Self::EditMe => String::from("edit_me"),
             Self::ChangeMyIcon => String::from("change_my_icon"),
             Self::ChangeMyPassword => String::from("change_my_password"),

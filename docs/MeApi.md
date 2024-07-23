@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**get_my_unread_channels**](MeApi.md#get_my_unread_channels) | **GET** /users/me/unread | 未読チャンネルを取得
 [**get_my_user_tags**](MeApi.md#get_my_user_tags) | **GET** /users/me/tags | 自分のタグリストを取得
 [**get_my_view_states**](MeApi.md#get_my_view_states) | **GET** /users/me/view-states | 自身のチャンネル閲覧状態一覧を取得
+[**get_oidc_user_info**](MeApi.md#get_oidc_user_info) | **GET** /users/me/oidc | 自分のユーザー詳細を取得 (OIDC UserInfo)
 [**get_user_settings**](MeApi.md#get_user_settings) | **GET** /users/me/settings | ユーザー設定を取得
 [**link_external_account**](MeApi.md#link_external_account) | **POST** /users/me/ex-accounts/link | 外部ログインアカウントを紐付ける
 [**read_channel**](MeApi.md#read_channel) | **DELETE** /users/me/unread/{channelId} | チャンネルを既読にする
@@ -109,7 +110,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | アイコン画像(1MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -592,6 +593,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<crate::models::MyChannelViewState>**](MyChannelViewState.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_oidc_user_info
+
+> crate::models::OidcUserInfo get_oidc_user_info()
+自分のユーザー詳細を取得 (OIDC UserInfo)
+
+OIDCトークンを用いてユーザー詳細を取得します。 OIDC UserInfo Endpointです。 
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**crate::models::OidcUserInfo**](OIDCUserInfo.md)
 
 ### Authorization
 
