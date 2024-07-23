@@ -65,7 +65,7 @@ BOTのアイコン画像を変更
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **bot_id** | **uuid::Uuid** | BOTUUID | [required] |
-**file** | **std::path::PathBuf** | アイコン画像(1MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
 
 ### Return type
 

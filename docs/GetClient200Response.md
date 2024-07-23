@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **description** | **String** | 説明 | 
 **developer_id** | [**uuid::Uuid**](uuid::Uuid.md) | クライアント開発者UUID | 
 **scopes** | [**Vec<crate::models::OAuth2Scope>**](OAuth2Scope.md) | 要求スコープの配列 | 
+**confidential** | **bool** | confidential client なら true, public client なら false | 
 **callback_url** | **String** | コールバックURL | 
 **secret** | **String** | クライアントシークレット | 
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **description** | Option<**String**> | 説明 | [optional]
 **callback_url** | Option<**String**> | コールバックURL | [optional]
 **developer_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> | クライアント開発者UUID | [optional]
+**confidential** | Option<**bool**> | confidential client なら true, public client なら false | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

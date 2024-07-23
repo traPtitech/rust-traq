@@ -13,6 +13,10 @@
 /// OAuth2スコープ
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum OAuth2Scope {
+    #[serde(rename = "openid")]
+    Openid,
+    #[serde(rename = "profile")]
+    Profile,
     #[serde(rename = "read")]
     Read,
     #[serde(rename = "write")]
@@ -24,6 +28,8 @@ pub enum OAuth2Scope {
 impl ToString for OAuth2Scope {
     fn to_string(&self) -> String {
         match self {
+            Self::Openid => String::from("openid"),
+            Self::Profile => String::from("profile"),
             Self::Read => String::from("read"),
             Self::Write => String::from("write"),
             Self::ManageBot => String::from("manage_bot"),
@@ -33,6 +39,6 @@ impl ToString for OAuth2Scope {
 
 impl Default for OAuth2Scope {
     fn default() -> OAuth2Scope {
-        Self::Read
+        Self::Openid
     }
 }
