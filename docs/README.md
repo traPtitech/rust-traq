@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 *MeApi* | [**get_my_unread_channels**](MeApi.md#get_my_unread_channels) | **GET** /users/me/unread | 未読チャンネルを取得
 *MeApi* | [**get_my_user_tags**](MeApi.md#get_my_user_tags) | **GET** /users/me/tags | 自分のタグリストを取得
 *MeApi* | [**get_my_view_states**](MeApi.md#get_my_view_states) | **GET** /users/me/view-states | 自身のチャンネル閲覧状態一覧を取得
+*MeApi* | [**get_oidc_user_info**](MeApi.md#get_oidc_user_info) | **GET** /users/me/oidc | 自分のユーザー詳細を取得 (OIDC UserInfo)
 *MeApi* | [**get_user_settings**](MeApi.md#get_user_settings) | **GET** /users/me/settings | ユーザー設定を取得
 *MeApi* | [**link_external_account**](MeApi.md#link_external_account) | **POST** /users/me/ex-accounts/link | 外部ログインアカウントを紐付ける
 *MeApi* | [**read_channel**](MeApi.md#read_channel) | **DELETE** /users/me/unread/{channelId} | チャンネルを既読にする
@@ -160,6 +161,7 @@ Class | Method | HTTP request | Description
 *Oauth2Api* | [**post_o_auth2_authorize**](Oauth2Api.md#post_o_auth2_authorize) | **POST** /oauth2/authorize | OAuth2 認可エンドポイント
 *Oauth2Api* | [**post_o_auth2_authorize_decide**](Oauth2Api.md#post_o_auth2_authorize_decide) | **POST** /oauth2/authorize/decide | OAuth2 認可承諾API
 *Oauth2Api* | [**post_o_auth2_token**](Oauth2Api.md#post_o_auth2_token) | **POST** /oauth2/token | OAuth2 トークンエンドポイント
+*Oauth2Api* | [**revoke_client_tokens**](Oauth2Api.md#revoke_client_tokens) | **DELETE** /clients/{clientId}/tokens | OAuthクライアントのトークンを削除
 *Oauth2Api* | [**revoke_my_token**](Oauth2Api.md#revoke_my_token) | **DELETE** /users/me/tokens/{tokenId} | トークンの認可を取り消す
 *Oauth2Api* | [**revoke_o_auth2_token**](Oauth2Api.md#revoke_o_auth2_token) | **POST** /oauth2/revoke | OAuth2 トークン無効化エンドポイント
 *OgpApi* | [**delete_ogp_cache**](OgpApi.md#delete_ogp_cache) | **DELETE** /ogp/cache | OGP情報のキャッシュを削除
@@ -278,6 +280,8 @@ Class | Method | HTTP request | Description
  - [OAuth2Token](OAuth2Token.md)
  - [Ogp](Ogp.md)
  - [OgpMedia](OgpMedia.md)
+ - [OidcTraqUserInfo](OidcTraqUserInfo.md)
+ - [OidcUserInfo](OidcUserInfo.md)
  - [ParentChangedEvent](ParentChangedEvent.md)
  - [PatchBotRequest](PatchBotRequest.md)
  - [PatchChannelRequest](PatchChannelRequest.md)
@@ -322,6 +326,7 @@ Class | Method | HTTP request | Description
  - [PutMyPasswordRequest](PutMyPasswordRequest.md)
  - [PutNotifyCitationRequest](PutNotifyCitationRequest.md)
  - [PutUserPasswordRequest](PutUserPasswordRequest.md)
+ - [Session](Session.md)
  - [Stamp](Stamp.md)
  - [StampHistoryEntry](StampHistoryEntry.md)
  - [StampPalette](StampPalette.md)
@@ -349,7 +354,6 @@ Class | Method | HTTP request | Description
  - [VisibilityChangedEvent](VisibilityChangedEvent.md)
  - [WebRtcAuthenticateResult](WebRtcAuthenticateResult.md)
  - [WebRtcUserState](WebRtcUserState.md)
- - [WebRtcUserStateSessionsInner](WebRtcUserStateSessionsInner.md)
  - [Webhook](Webhook.md)
 
 
