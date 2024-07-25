@@ -20,7 +20,7 @@ pub struct WebRtcUserState {
     pub channel_id: uuid::Uuid,
     /// セッションの配列
     #[serde(rename = "sessions")]
-    pub sessions: Vec<crate::models::WebRtcUserStateSessionsInner>,
+    pub sessions: Vec<crate::models::Session>,
 }
 
 impl WebRtcUserState {
@@ -28,7 +28,7 @@ impl WebRtcUserState {
     pub fn new(
         user_id: uuid::Uuid,
         channel_id: uuid::Uuid,
-        sessions: Vec<crate::models::WebRtcUserStateSessionsInner>,
+        sessions: Vec<crate::models::Session>,
     ) -> WebRtcUserState {
         WebRtcUserState {
             user_id,

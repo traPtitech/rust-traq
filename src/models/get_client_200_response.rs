@@ -25,6 +25,9 @@ pub struct GetClient200Response {
     /// 要求スコープの配列
     #[serde(rename = "scopes")]
     pub scopes: Vec<crate::models::OAuth2Scope>,
+    /// confidential client なら true, public client なら false
+    #[serde(rename = "confidential")]
+    pub confidential: bool,
     /// コールバックURL
     #[serde(rename = "callbackUrl")]
     pub callback_url: String,
@@ -40,6 +43,7 @@ impl GetClient200Response {
         description: String,
         developer_id: uuid::Uuid,
         scopes: Vec<crate::models::OAuth2Scope>,
+        confidential: bool,
         callback_url: String,
         secret: String,
     ) -> GetClient200Response {
@@ -49,6 +53,7 @@ impl GetClient200Response {
             description,
             developer_id,
             scopes,
+            confidential,
             callback_url,
             secret,
         }

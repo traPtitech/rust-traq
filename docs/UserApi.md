@@ -66,7 +66,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **uuid::Uuid** | ユーザーUUID | [required] |
-**file** | **std::path::PathBuf** | アイコン画像(1MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -286,7 +286,7 @@ DMチャンネル情報を取得
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **uuid::Uuid** |  | [required] |
 
 ### Return type
 

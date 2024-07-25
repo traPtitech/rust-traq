@@ -33,6 +33,9 @@ pub struct OAuth2ClientDetail {
     /// クライアントシークレット
     #[serde(rename = "secret")]
     pub secret: String,
+    /// confidential client なら true, public client なら false
+    #[serde(rename = "confidential")]
+    pub confidential: bool,
 }
 
 impl OAuth2ClientDetail {
@@ -45,6 +48,7 @@ impl OAuth2ClientDetail {
         scopes: Vec<crate::models::OAuth2Scope>,
         callback_url: String,
         secret: String,
+        confidential: bool,
     ) -> OAuth2ClientDetail {
         OAuth2ClientDetail {
             id,
@@ -54,6 +58,7 @@ impl OAuth2ClientDetail {
             scopes,
             callback_url,
             secret,
+            confidential,
         }
     }
 }

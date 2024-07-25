@@ -107,6 +107,8 @@ pub enum UserPermission {
     EditStampCreatedByOthers,
     #[serde(rename = "delete_stamp")]
     DeleteStamp,
+    #[serde(rename = "delete_my_stamp")]
+    DeleteMyStamp,
     #[serde(rename = "add_message_stamp")]
     AddMessageStamp,
     #[serde(rename = "remove_message_stamp")]
@@ -127,6 +129,8 @@ pub enum UserPermission {
     RegisterUser,
     #[serde(rename = "get_me")]
     GetMe,
+    #[serde(rename = "get_oidc_userinfo")]
+    GetOIDCUserInfo,
     #[serde(rename = "edit_me")]
     EditMe,
     #[serde(rename = "change_my_icon")]
@@ -227,6 +231,7 @@ impl ToString for UserPermission {
             Self::EditStamp => String::from("edit_stamp"),
             Self::EditStampCreatedByOthers => String::from("edit_stamp_created_by_others"),
             Self::DeleteStamp => String::from("delete_stamp"),
+            Self::DeleteMyStamp => String::from("delete_my_stamp"),
             Self::AddMessageStamp => String::from("add_message_stamp"),
             Self::RemoveMessageStamp => String::from("remove_message_stamp"),
             Self::GetMyStampHistory => String::from("get_my_stamp_history"),
@@ -237,6 +242,7 @@ impl ToString for UserPermission {
             Self::GetUser => String::from("get_user"),
             Self::RegisterUser => String::from("register_user"),
             Self::GetMe => String::from("get_me"),
+            Self::GetOIDCUserInfo => String::from("get_oidc_userinfo"),
             Self::EditMe => String::from("edit_me"),
             Self::ChangeMyIcon => String::from("change_my_icon"),
             Self::ChangeMyPassword => String::from("change_my_password"),

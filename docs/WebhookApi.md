@@ -29,7 +29,7 @@ Webhookのアイコンを変更
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
-**file** | **std::path::PathBuf** | アイコン画像(1MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
 
 ### Return type
 

@@ -24,6 +24,9 @@ pub struct PatchClientRequest {
     /// クライアント開発者UUID
     #[serde(rename = "developerId", skip_serializing_if = "Option::is_none")]
     pub developer_id: Option<uuid::Uuid>,
+    /// confidential client なら true, public client なら false
+    #[serde(rename = "confidential", skip_serializing_if = "Option::is_none")]
+    pub confidential: Option<bool>,
 }
 
 impl PatchClientRequest {
@@ -34,6 +37,7 @@ impl PatchClientRequest {
             description: None,
             callback_url: None,
             developer_id: None,
+            confidential: None,
         }
     }
 }

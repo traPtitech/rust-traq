@@ -24,6 +24,9 @@ pub struct PostClientRequest {
     /// 説明
     #[serde(rename = "description")]
     pub description: String,
+    /// confidential client なら true, public cleint なら false
+    #[serde(rename = "confidential", skip_serializing_if = "Option::is_none")]
+    pub confidential: Option<bool>,
 }
 
 impl PostClientRequest {
@@ -39,6 +42,7 @@ impl PostClientRequest {
             callback_url,
             scopes,
             description,
+            confidential: None,
         }
     }
 }
