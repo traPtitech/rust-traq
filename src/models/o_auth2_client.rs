@@ -27,6 +27,9 @@ pub struct OAuth2Client {
     /// 要求スコープの配列
     #[serde(rename = "scopes")]
     pub scopes: Vec<crate::models::OAuth2Scope>,
+    /// confidential client なら true, public client なら false
+    #[serde(rename = "confidential")]
+    pub confidential: bool,
 }
 
 impl OAuth2Client {
@@ -37,6 +40,7 @@ impl OAuth2Client {
         description: String,
         developer_id: uuid::Uuid,
         scopes: Vec<crate::models::OAuth2Scope>,
+        confidential: bool,
     ) -> OAuth2Client {
         OAuth2Client {
             id,
@@ -44,6 +48,7 @@ impl OAuth2Client {
             description,
             developer_id,
             scopes,
+            confidential,
         }
     }
 }

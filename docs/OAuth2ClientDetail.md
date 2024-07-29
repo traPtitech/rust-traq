@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **scopes** | [**Vec<crate::models::OAuth2Scope>**](OAuth2Scope.md) | 要求スコープの配列 | 
 **callback_url** | **String** | コールバックURL | 
 **secret** | **String** | クライアントシークレット | 
+**confidential** | **bool** | confidential client なら true, public client なら false | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

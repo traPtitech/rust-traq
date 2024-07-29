@@ -32,6 +32,9 @@ pub struct PatchBotRequest {
     /// 購読するイベント
     #[serde(rename = "subscribeEvents", skip_serializing_if = "Option::is_none")]
     pub subscribe_events: Option<Vec<String>>,
+    /// 自己紹介(biography)
+    #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
+    pub bio: Option<String>,
 }
 
 impl PatchBotRequest {
@@ -45,6 +48,7 @@ impl PatchBotRequest {
             endpoint: None,
             developer_id: None,
             subscribe_events: None,
+            bio: None,
         }
     }
 }
