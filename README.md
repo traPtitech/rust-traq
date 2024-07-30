@@ -28,3 +28,21 @@ async fn main() {
     println!("{:?}", res);
 }
 ```
+
+## TLS Backend
+
+This crate depends on [reqwest](https://crates.io/crates/reqwest) as an HTTPS client. As with reqwest, you can select TLS backend through this crate's feature flags.
+
+- `native-tls`: the system-installed TLS backend
+- `rustls-tls`: the TLS library written in Rust
+
+`native-tls` is used by default. To use only `rustls-tls`, write dependencies as:
+
+```toml
+[dependencies]
+traq.version = "..."
+traq.default-features = false
+traq.features = ["rustls-tls"]
+```
+
+For more information, see [docs in reqwest::tls](https://docs.rs/reqwest/0.12/reqwest/tls/index.html).
