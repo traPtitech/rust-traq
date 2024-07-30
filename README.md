@@ -16,16 +16,19 @@ This crate is updated using [openapi-generator](https://openapi-generator.tech).
 Add this crate using `cargo add traq`, then write in `main.rs`:
 
 ```rust
+use std::{env::var, error::Error};
 use traq::apis::{channel_api, configuration};
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), Box<dyn Error>> {
+    let access_token = var("BOT_ACCESS_TOKEN")?;
     let conf = configuration::Configuration {
-        bearer_access_token: env::var("BOT_ACCESS_TOKEN").ok(),
+        bearer_access_token: Some(access_token),
         ..Default::default()
     };
-    let res = channel_api::get_channels(&conf, Some(true)).await;
-    println!("{:?}", res);
+    let channels = channel_api::get_channels(&conf, Some(true)).await?;
+    println!("there are {} public channels", channels.public.len());
+    Ok(())
 }
 ```
 
