@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.1.5] - 2024-07-30
+
+### Added
+
+- Add API for OIDC implementation ([traQ#1887](https://github.com/traPtitech/traQ/pull/1887))
+    - Add API [`traq::apis::me_api::get_oidc_user_info`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/apis/me_api.rs#L1154-L1195)
+    - Add variant `Openid`, `Profile` in enum [`traq::models::OAuth2Scope`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/o_auth2_scope.rs#L13-L26)
+    - Add struct [`traq::models::OidcTraqUserInfo`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/oidc_traq_user_info.rs#L13-L47)
+    - Add struct [`traq::models::OidcUserInfo`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/oidc_user_info.rs#L13-L32)
+- Add field `confidential` in [`traq::models::GetClient200Response`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/get_client_200_response.rs#L11-L37), [`traq::models::OAuth2ClientDetail`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/o_auth2_client_detail.rs#L13-L39), [`traq::models::OAuth2Client`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/o_auth2_client.rs#L13-L33), [`traq::models::PatchClientRequest`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/patch_client_request.rs#L13-L30), [`traq::models::PostClientRequest`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/post_client_request.rs#L13-L30) ([traQ#2426](https://github.com/traPtitech/traQ/pull/2426))
+- Add field `bio` in [`traq::models::PatchBotRequest`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/patch_bot_request.rs#L13-L38) [traQ#2483](https://github.com/traPtitech/traQ/pull/2483)
+- Add variant `DeleteMyStamp` in enum [`traq::models::UserPermission`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/user_permission.rs#L13-L182) ([traQ#2474](https://github.com/traPtitech/traQ/pull/2474))
+- Add struct [`traq::models::Session`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/session.rs#L11-L19), which is used in [`traq::models::WebRtcUserState`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/models/web_rtc_user_state.rs#L13-L24) ([traQ#2475](https://github.com/traPtitech/traQ/pull/2475))
+- Add API [`traq::apis::oauth2_api::revoke_client_tokens`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/apis/oauth2_api.rs#L711-L757) ([traQ#2477](https://github.com/traPtitech/traQ/pull/2477))
+- Add feature flags to select TLS backend ([#26](https://github.com/traPtitech/rust-traq/pull/26))
+
+### Changed
+
+- Change the format of the parameter `user_id` of [`traq::apis::channel_api::get_user_dm_channel`](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/src/apis/channel_api.rs#L900-L946) to UUID in [documentation](https://github.com/traPtitech/rust-traq/blob/f53385bfd7a9cce3bf4070958a01acdb8a930bd1/docs/ChannelApi.md#L474) ([traQ#2485](https://github.com/traPtitech/traQ/pull/2485))
+
+### Fixed
+
+- Fix example code in README
+
 ## [0.1.4] - 2024-03-21
 
 ### Changed
@@ -50,6 +74,7 @@ and this project adheres to [Semantic Versioning].
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
 
 <!-- Versions -->
+[0.1.5]: https://github.com/traPtitech/rust-traq/compare/v0.1.4..v0.1.5
 [0.1.4]: https://github.com/traPtitech/rust-traq/compare/v0.1.3..v0.1.4
 [0.1.3]: https://github.com/traPtitech/rust-traq/compare/v0.1.2..v0.1.3
 [0.1.2]: https://github.com/traPtitech/rust-traq/compare/v0.1.1..v0.1.2
