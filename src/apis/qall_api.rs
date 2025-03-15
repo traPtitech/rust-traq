@@ -13,241 +13,113 @@ use reqwest;
 use super::{configuration, Error};
 use crate::apis::ResponseContent;
 
-/// struct for typed errors of method [`change_webhook_icon`]
+/// struct for typed errors of method [`change_participant_role`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ChangeWebhookIconError {
+pub enum ChangeParticipantRoleError {
     Status400(),
-    Status404(),
-    Status413(),
+    Status401(),
+    Status500(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`create_webhook`]
+/// struct for typed errors of method [`get_endpoints`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum CreateWebhookError {
+pub enum GetEndpointsError {
+    Status404(),
+    Status500(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_live_kit_token`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetLiveKitTokenError {
     Status400(),
+    Status401(),
+    Status500(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`delete_webhook`]
+/// struct for typed errors of method [`get_room_metadata`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DeleteWebhookError {
+pub enum GetRoomMetadataError {
     Status404(),
+    Status500(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`edit_webhook`]
+/// struct for typed errors of method [`get_rooms`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum EditWebhookError {
+pub enum GetRoomsError {
+    Status404(),
+    Status500(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_soundboard_list`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetSoundboardListError {
+    Status500(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`live_kit_webhook`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum LiveKitWebhookError {
     Status400(),
-    Status404(),
+    Status500(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_webhook`]
+/// struct for typed errors of method [`post_soundboard`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetWebhookError {
-    Status404(),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`get_webhook_icon`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetWebhookIconError {
-    Status404(),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`get_webhook_messages`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetWebhookMessagesError {
+pub enum PostSoundboardError {
     Status400(),
-    Status404(),
+    Status500(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_webhooks`]
+/// struct for typed errors of method [`post_soundboard_play`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetWebhooksError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`post_webhook`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PostWebhookError {
+pub enum PostSoundboardPlayError {
     Status400(),
-    Status404(),
+    Status401(),
+    Status500(),
     UnknownValue(serde_json::Value),
 }
 
-/// 指定したWebhookのアイコン画像を変更します。
-pub async fn change_webhook_icon(
+/// struct for typed errors of method [`update_room_metadata`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateRoomMetadataError {
+    Status400(),
+    Status401(),
+    Status500(),
+    UnknownValue(serde_json::Value),
+}
+
+/// ルーム内の参加者の発言権限を変更します。
+pub async fn change_participant_role(
     configuration: &configuration::Configuration,
-    webhook_id: &str,
-    file: std::path::PathBuf,
-) -> Result<(), Error<ChangeWebhookIconError>> {
+    room_id: &str,
+    qall_participant_request: Vec<crate::models::QallParticipantRequest>,
+) -> Result<crate::models::QallParticipantResponse, Error<ChangeParticipantRoleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}/icon",
+        "{}/qall/rooms/{roomId}/participants",
         local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
-    );
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    let mut local_var_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'file' parameter
-    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<ChangeWebhookIconError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Webhookを新規作成します。 `secret`が空文字の場合、insecureウェブフックが作成されます。
-pub async fn create_webhook(
-    configuration: &configuration::Configuration,
-    post_webhook_request: Option<crate::models::PostWebhookRequest>,
-) -> Result<crate::models::Webhook, Error<CreateWebhookError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/webhooks", local_var_configuration.base_path);
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    local_var_req_builder = local_var_req_builder.json(&post_webhook_request);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<CreateWebhookError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// 指定したWebhookを削除します。 Webhookによって投稿されたメッセージは削除されません。
-pub async fn delete_webhook(
-    configuration: &configuration::Configuration,
-    webhook_id: &str,
-) -> Result<(), Error<DeleteWebhookError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}",
-        local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
-    );
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
-    } else {
-        let local_var_entity: Option<DeleteWebhookError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// 指定したWebhookの情報を変更します。
-pub async fn edit_webhook(
-    configuration: &configuration::Configuration,
-    webhook_id: &str,
-    patch_webhook_request: Option<crate::models::PatchWebhookRequest>,
-) -> Result<(), Error<EditWebhookError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}",
-        local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
+        roomId = crate::apis::urlencode(room_id)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
@@ -262,7 +134,7 @@ pub async fn edit_webhook(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&patch_webhook_request);
+    local_var_req_builder = local_var_req_builder.json(&qall_participant_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -271,9 +143,9 @@ pub async fn edit_webhook(
     let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<EditWebhookError> =
+        let local_var_entity: Option<ChangeParticipantRoleError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -284,19 +156,115 @@ pub async fn edit_webhook(
     }
 }
 
-/// 指定したWebhookの詳細を取得します。
-pub async fn get_webhook(
+/// 接続可能なLiveKitエンドポイントを取得します。
+pub async fn get_endpoints(
     configuration: &configuration::Configuration,
-    webhook_id: &str,
-) -> Result<crate::models::Webhook, Error<GetWebhookError>> {
+) -> Result<crate::models::QallEndpointResponse, Error<GetEndpointsError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/qall/endpoints", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetEndpointsError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// 指定したルームに参加するためのLiveKitトークンを取得します。   
+pub async fn get_live_kit_token(
+    configuration: &configuration::Configuration,
+    room_id: Option<&str>,
+    is_webinar: Option<bool>,
+) -> Result<crate::models::QallTokenResponse, Error<GetLiveKitTokenError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/qall/token", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = room_id {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("roomId", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = is_webinar {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("isWebinar", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetLiveKitTokenError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// ルームのメタデータを取得します。
+pub async fn get_room_metadata(
+    configuration: &configuration::Configuration,
+    room_id: &str,
+) -> Result<crate::models::QallMetadataResponse, Error<GetRoomMetadataError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}",
+        "{}/qall/rooms/{roomId}/metadata",
         local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
+        roomId = crate::apis::urlencode(room_id)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -321,7 +289,7 @@ pub async fn get_webhook(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<GetWebhookError> =
+        let local_var_entity: Option<GetRoomMetadataError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -332,20 +300,15 @@ pub async fn get_webhook(
     }
 }
 
-/// 指定したWebhookのアイコン画像を取得します
-pub async fn get_webhook_icon(
+/// 現在存在する(またはアクティブな)ルームと、そのルームに所属している参加者情報を取得します。
+pub async fn get_rooms(
     configuration: &configuration::Configuration,
-    webhook_id: &str,
-) -> Result<std::path::PathBuf, Error<GetWebhookIconError>> {
+) -> Result<Vec<crate::models::QallRoomWithParticipants>, Error<GetRoomsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}/icon",
-        local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
-    );
+    let local_var_uri_str = format!("{}/qall/rooms", local_var_configuration.base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
@@ -369,8 +332,7 @@ pub async fn get_webhook_icon(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<GetWebhookIconError> =
-            serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<GetRoomsError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
             content: local_var_content,
@@ -380,53 +342,18 @@ pub async fn get_webhook_icon(
     }
 }
 
-/// 指定されたWebhookが投稿したメッセージのリストを返します。
-pub async fn get_webhook_messages(
+/// DBに保存されたサウンドボード情報を取得します。   各アイテムには soundId, soundName, stampId が含まれます。
+pub async fn get_soundboard_list(
     configuration: &configuration::Configuration,
-    webhook_id: &str,
-    limit: Option<i32>,
-    offset: Option<i32>,
-    since: Option<String>,
-    until: Option<String>,
-    inclusive: Option<bool>,
-    order: Option<&str>,
-) -> Result<Vec<crate::models::Message>, Error<GetWebhookMessagesError>> {
+) -> Result<Vec<crate::models::SoundboardItem>, Error<GetSoundboardListError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}/messages",
-        local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
-    );
+    let local_var_uri_str = format!("{}/qall/soundboard", local_var_configuration.base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_str) = limit {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = offset {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = since {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("since", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = until {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("until", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = inclusive {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("inclusive", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = order {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("order", &local_var_str.to_string())]);
-    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -447,7 +374,7 @@ pub async fn get_webhook_messages(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<GetWebhookMessagesError> =
+        let local_var_entity: Option<GetSoundboardListError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -458,89 +385,22 @@ pub async fn get_webhook_messages(
     }
 }
 
-/// Webhookのリストを取得します。 allがtrueで無い場合は、自分がオーナーのWebhookのリストを返します。
-pub async fn get_webhooks(
+/// LiveKit側で設定したWebhookから呼び出されるエンドポイントです。   参加者の入室・退出などのイベントを受け取り、サーバ内で処理を行います。
+pub async fn live_kit_webhook(
     configuration: &configuration::Configuration,
-    all: Option<bool>,
-) -> Result<Vec<crate::models::Webhook>, Error<GetWebhooksError>> {
+    body: serde_json::Value,
+) -> Result<(), Error<LiveKitWebhookError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/webhooks", local_var_configuration.base_path);
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = all {
-        local_var_req_builder = local_var_req_builder.query(&[("all", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<GetWebhooksError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Webhookにメッセージを投稿します。 secureなウェブフックに対しては`X-TRAQ-Signature`ヘッダーが必須です。 アーカイブされているチャンネルには投稿できません。
-pub async fn post_webhook(
-    configuration: &configuration::Configuration,
-    webhook_id: &str,
-    x_traq_signature: Option<&str>,
-    x_traq_channel_id: Option<&str>,
-    embed: Option<i32>,
-    body: Option<&str>,
-) -> Result<(), Error<PostWebhookError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!(
-        "{}/webhooks/{webhookId}",
-        local_var_configuration.base_path,
-        webhookId = crate::apis::urlencode(webhook_id)
-    );
+    let local_var_uri_str = format!("{}/qall/webhook", local_var_configuration.base_path);
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_str) = embed {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("embed", &local_var_str.to_string())]);
-    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(local_var_param_value) = x_traq_signature {
-        local_var_req_builder =
-            local_var_req_builder.header("X-TRAQ-Signature", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = x_traq_channel_id {
-        local_var_req_builder =
-            local_var_req_builder.header("X-TRAQ-Channel-Id", local_var_param_value.to_string());
     }
     if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
@@ -559,7 +419,155 @@ pub async fn post_webhook(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
-        let local_var_entity: Option<PostWebhookError> =
+        let local_var_entity: Option<LiveKitWebhookError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// 15秒程度の短い音声ファイルを multipart/form-data で送信し、S3(互換ストレージ)にアップロードします。   クライアントは「soundName」というフィールドを送信し、それをDBに保存して関連付けを行います。   また、サーバ側で soundId を自動生成し、S3のファイル名に使用します。
+pub async fn post_soundboard(
+    configuration: &configuration::Configuration,
+    audio: std::path::PathBuf,
+    sound_name: &str,
+    stamp_id: Option<&str>,
+) -> Result<crate::models::SoundboardUploadResponse, Error<PostSoundboardError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/qall/soundboard", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    let mut local_var_form = reqwest::multipart::Form::new();
+    // TODO: support file upload for 'audio' parameter
+    local_var_form = local_var_form.text("soundName", sound_name.to_string());
+    if let Some(local_var_param_value) = stamp_id {
+        local_var_form = local_var_form.text("stampId", local_var_param_value.to_string());
+    }
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PostSoundboardError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// S3上にある音声ファイルの署名付きURLを生成し、   Ingressを介して指定ルームに音声を流します。     該当ルームに参加しているユーザであれば再生可能とします。
+pub async fn post_soundboard_play(
+    configuration: &configuration::Configuration,
+    soundboard_play_request: crate::models::SoundboardPlayRequest,
+) -> Result<crate::models::SoundboardPlayResponse, Error<PostSoundboardPlayError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/qall/soundboard/play", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&soundboard_play_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PostSoundboardPlayError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// ルームのメタデータを更新します。
+pub async fn update_room_metadata(
+    configuration: &configuration::Configuration,
+    room_id: &str,
+    qall_metadata_request: crate::models::QallMetadataRequest,
+) -> Result<(), Error<UpdateRoomMetadataError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/qall/rooms/{roomId}/metadata",
+        local_var_configuration.base_path,
+        roomId = crate::apis::urlencode(room_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::PATCH, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&qall_metadata_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        Ok(())
+    } else {
+        let local_var_entity: Option<UpdateRoomMetadataError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
