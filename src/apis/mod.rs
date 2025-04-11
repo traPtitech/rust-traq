@@ -106,6 +106,7 @@ pub mod oauth2_api;
 pub mod ogp_api;
 pub mod pin_api;
 pub mod public_api;
+pub mod qall_api;
 pub mod stamp_api;
 pub mod star_api;
 pub mod user_api;
