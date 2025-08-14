@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**change_webhook_icon**](WebhookApi.md#change_webhook_icon) | **PUT** /webhooks/{webhookId}/icon | Webhookのアイコンを変更
 [**create_webhook**](WebhookApi.md#create_webhook) | **POST** /webhooks | Webhookを新規作成
 [**delete_webhook**](WebhookApi.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Webhookを削除
+[**delete_webhook_message**](WebhookApi.md#delete_webhook_message) | **DELETE** /webhooks/:webhookID/messages/:messageID | Webhookの投稿メッセージを削除
 [**edit_webhook**](WebhookApi.md#edit_webhook) | **PATCH** /webhooks/{webhookId} | Webhook情報を変更
 [**get_webhook**](WebhookApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Webhook情報を取得
 [**get_webhook_icon**](WebhookApi.md#get_webhook_icon) | **GET** /webhooks/{webhookId}/icon | Webhookのアイコンを取得
@@ -90,6 +91,35 @@ Webhookを削除
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_webhook_message
+
+> delete_webhook_message(webhook_id, message_id)
+Webhookの投稿メッセージを削除
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
+**message_id** | **uuid::Uuid** | メッセージUUID | [required] |
 
 ### Return type
 
