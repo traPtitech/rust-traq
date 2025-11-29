@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**get_my_qr_code**](MeApi.md#get_my_qr_code) | **GET** /users/me/qr-code | QRコードを取得
 [**get_my_sessions**](MeApi.md#get_my_sessions) | **GET** /users/me/sessions | 自分のログインセッションリストを取得
 [**get_my_stamp_history**](MeApi.md#get_my_stamp_history) | **GET** /users/me/stamp-history | スタンプ履歴を取得
+[**get_my_stamp_recommendations**](MeApi.md#get_my_stamp_recommendations) | **GET** /users/me/stamp-recommendations | スタンプレコメンドを取得
 [**get_my_stars**](MeApi.md#get_my_stars) | **GET** /users/me/stars | スターチャンネルリストを取得
 [**get_my_tokens**](MeApi.md#get_my_tokens) | **GET** /users/me/tokens | 有効トークンのリストを取得
 [**get_my_unread_channels**](MeApi.md#get_my_unread_channels) | **GET** /users/me/unread | 未読チャンネルを取得
@@ -110,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MB,`Config.Imaging.MaxPixels`(default: 2560*1600)までのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -458,6 +459,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<crate::models::StampHistoryEntry>**](StampHistoryEntry.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_my_stamp_recommendations
+
+> Vec<uuid::Uuid> get_my_stamp_recommendations(limit)
+スタンプレコメンドを取得
+
+自分のスタンプレコメンドを最大200件まで取得します。 結果は推薦度の高い順で返されます。 スタンプを使用したことがないユーザーの場合は空配列が返されます。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**limit** | Option<**i32**> | 件数 |  |[default to 100]
+
+### Return type
+
+[**Vec<uuid::Uuid>**](uuid::Uuid.md)
 
 ### Authorization
 
