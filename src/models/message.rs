@@ -39,6 +39,9 @@ pub struct Message {
     /// スレッドUUID
     #[serde(rename = "threadId", deserialize_with = "Option::deserialize")]
     pub thread_id: Option<uuid::Uuid>,
+    /// メッセージ送信の確認に使うことができる任意の識別子(投稿でのみ使用可)
+    #[serde(rename = "nonce", skip_serializing_if = "Option::is_none")]
+    pub nonce: Option<String>,
 }
 
 impl Message {
@@ -64,6 +67,7 @@ impl Message {
             pinned,
             stamps,
             thread_id,
+            nonce: None,
         }
     }
 }
