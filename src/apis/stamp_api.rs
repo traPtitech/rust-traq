@@ -104,6 +104,13 @@ pub enum GetMyStampHistoryError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_my_stamp_recommendations`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMyStampRecommendationsError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_stamp`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -214,7 +221,7 @@ pub async fn add_message_stamp(
 pub async fn change_stamp_image(
     configuration: &configuration::Configuration,
     stamp_id: &str,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
 ) -> Result<(), Error<ChangeStampImageError>> {
     let local_var_configuration = configuration;
 
@@ -238,7 +245,7 @@ pub async fn change_stamp_image(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    let local_var_form = reqwest::multipart::Form::new();
+    let mut local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'file' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -266,7 +273,7 @@ pub async fn change_stamp_image(
 pub async fn create_stamp(
     configuration: &configuration::Configuration,
     name: &str,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
 ) -> Result<crate::models::Stamp, Error<CreateStampError>> {
     let local_var_configuration = configuration;
 
@@ -641,6 +648,60 @@ pub async fn get_my_stamp_history(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetMyStampHistoryError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// 自分のスタンプレコメンドを最大200件まで取得します。 結果は推薦度の高い順で返されます。 スタンプを使用したことがないユーザーの場合は空配列が返されます。
+pub async fn get_my_stamp_recommendations(
+    configuration: &configuration::Configuration,
+    limit: Option<i32>,
+) -> Result<
+    Vec<crate::models::GetMyStampRecommendations200ResponseInner>,
+    Error<GetMyStampRecommendationsError>,
+> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/users/me/stamp-recommendations",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = limit {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("limit", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetMyStampRecommendationsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
