@@ -39,6 +39,15 @@ pub enum DeleteWebhookError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`delete_webhook_message`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteWebhookMessageError {
+    Status403(),
+    Status404(),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`edit_webhook`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -93,7 +102,7 @@ pub enum PostWebhookError {
 pub async fn change_webhook_icon(
     configuration: &configuration::Configuration,
     webhook_id: &str,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
 ) -> Result<(), Error<ChangeWebhookIconError>> {
     let local_var_configuration = configuration;
 
@@ -117,7 +126,7 @@ pub async fn change_webhook_icon(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    let local_var_form = reqwest::multipart::Form::new();
+    let mut local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'file' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -224,6 +233,56 @@ pub async fn delete_webhook(
         Ok(())
     } else {
         let local_var_entity: Option<DeleteWebhookError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// 指定されたWebhookが投稿したメッセージを削除します。
+pub async fn delete_webhook_message(
+    configuration: &configuration::Configuration,
+    webhook_id: &str,
+    message_id: &str,
+) -> Result<(), Error<DeleteWebhookMessageError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/webhooks/{webhookId}/messages/{messageId}",
+        local_var_configuration.base_path,
+        webhookId = crate::apis::urlencode(webhook_id),
+        messageId = crate::apis::urlencode(message_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        Ok(())
+    } else {
+        let local_var_entity: Option<DeleteWebhookMessageError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

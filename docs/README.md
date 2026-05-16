@@ -57,6 +57,7 @@ Class | Method | HTTP request | Description
 *ChannelApi* | [**get_channel**](ChannelApi.md#get_channel) | **GET** /channels/{channelId} | チャンネル情報を取得
 *ChannelApi* | [**get_channel_bots**](ChannelApi.md#get_channel_bots) | **GET** /channels/{channelId}/bots | チャンネル参加中のBOTのリストを取得
 *ChannelApi* | [**get_channel_events**](ChannelApi.md#get_channel_events) | **GET** /channels/{channelId}/events | チャンネルイベントのリストを取得
+*ChannelApi* | [**get_channel_path**](ChannelApi.md#get_channel_path) | **GET** /channels/{channelId}/path | 指定したチャンネルパスを取得
 *ChannelApi* | [**get_channel_pins**](ChannelApi.md#get_channel_pins) | **GET** /channels/{channelId}/pins | チャンネルピンのリストを取得
 *ChannelApi* | [**get_channel_stats**](ChannelApi.md#get_channel_stats) | **GET** /channels/{channelId}/stats | チャンネル統計情報を取得
 *ChannelApi* | [**get_channel_subscribers**](ChannelApi.md#get_channel_subscribers) | **GET** /channels/{channelId}/subscribers | チャンネルの通知購読者のリストを取得
@@ -95,6 +96,7 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**get_user_groups**](GroupApi.md#get_user_groups) | **GET** /groups | ユーザーグループのリストを取得
 *GroupApi* | [**remove_user_group_admin**](GroupApi.md#remove_user_group_admin) | **DELETE** /groups/{groupId}/admins/{userId} | グループ管理者を削除
 *GroupApi* | [**remove_user_group_member**](GroupApi.md#remove_user_group_member) | **DELETE** /groups/{groupId}/members/{userId} | グループメンバーを削除
+*GroupApi* | [**remove_user_group_members**](GroupApi.md#remove_user_group_members) | **DELETE** /groups/{groupId}/members | グループメンバーを一括削除
 *MeApi* | [**add_my_star**](MeApi.md#add_my_star) | **POST** /users/me/stars | チャンネルをスターに追加
 *MeApi* | [**add_my_user_tag**](MeApi.md#add_my_user_tag) | **POST** /users/me/tags | 自分にタグを追加
 *MeApi* | [**change_my_icon**](MeApi.md#change_my_icon) | **PUT** /users/me/icon | 自分のアイコン画像を変更
@@ -110,6 +112,7 @@ Class | Method | HTTP request | Description
 *MeApi* | [**get_my_qr_code**](MeApi.md#get_my_qr_code) | **GET** /users/me/qr-code | QRコードを取得
 *MeApi* | [**get_my_sessions**](MeApi.md#get_my_sessions) | **GET** /users/me/sessions | 自分のログインセッションリストを取得
 *MeApi* | [**get_my_stamp_history**](MeApi.md#get_my_stamp_history) | **GET** /users/me/stamp-history | スタンプ履歴を取得
+*MeApi* | [**get_my_stamp_recommendations**](MeApi.md#get_my_stamp_recommendations) | **GET** /users/me/stamp-recommendations | スタンプレコメンドを取得
 *MeApi* | [**get_my_stars**](MeApi.md#get_my_stars) | **GET** /users/me/stars | スターチャンネルリストを取得
 *MeApi* | [**get_my_tokens**](MeApi.md#get_my_tokens) | **GET** /users/me/tokens | 有効トークンのリストを取得
 *MeApi* | [**get_my_unread_channels**](MeApi.md#get_my_unread_channels) | **GET** /users/me/unread | 未読チャンネルを取得
@@ -172,6 +175,16 @@ Class | Method | HTTP request | Description
 *PinApi* | [**remove_pin**](PinApi.md#remove_pin) | **DELETE** /messages/{messageId}/pin | ピン留めを外す
 *PublicApi* | [**get_public_user_icon**](PublicApi.md#get_public_user_icon) | **GET** /public/icon/{username} | ユーザーのアイコン画像を取得
 *PublicApi* | [**get_server_version**](PublicApi.md#get_server_version) | **GET** /version | バージョンを取得
+*QallApi* | [**change_participant_role**](QallApi.md#change_participant_role) | **PATCH** /qall/rooms/{roomId}/participants | ルームでの発言権限を変更
+*QallApi* | [**get_live_kit_token**](QallApi.md#get_live_kit_token) | **GET** /qall/token | LiveKitトークンを取得
+*QallApi* | [**get_qall_endpoints**](QallApi.md#get_qall_endpoints) | **GET** /qall/endpoints | LiveKitエンドポイントを取得
+*QallApi* | [**get_room_metadata**](QallApi.md#get_room_metadata) | **GET** /qall/rooms/{roomId}/metadata | ルームのメタデータを取得
+*QallApi* | [**get_rooms**](QallApi.md#get_rooms) | **GET** /qall/rooms | ルームと参加者の一覧を取得
+*QallApi* | [**get_soundboard_list**](QallApi.md#get_soundboard_list) | **GET** /qall/soundboard | サウンドボード用の音声一覧を取得
+*QallApi* | [**live_kit_webhook**](QallApi.md#live_kit_webhook) | **POST** /qall/webhook | LiveKit Webhook受信
+*QallApi* | [**post_soundboard**](QallApi.md#post_soundboard) | **POST** /qall/soundboard | サウンドボード用の短い音声ファイルをアップロード
+*QallApi* | [**post_soundboard_play**](QallApi.md#post_soundboard_play) | **POST** /qall/soundboard/play | アップロード済み音声を LiveKit ルームで再生
+*QallApi* | [**update_room_metadata**](QallApi.md#update_room_metadata) | **PATCH** /qall/rooms/{roomId}/metadata | ルームのメタデータを更新
 *StampApi* | [**add_message_stamp**](StampApi.md#add_message_stamp) | **POST** /messages/{messageId}/stamps/{stampId} | スタンプを押す
 *StampApi* | [**change_stamp_image**](StampApi.md#change_stamp_image) | **PUT** /stamps/{stampId}/image | スタンプ画像を変更
 *StampApi* | [**create_stamp**](StampApi.md#create_stamp) | **POST** /stamps | スタンプを作成
@@ -182,6 +195,7 @@ Class | Method | HTTP request | Description
 *StampApi* | [**edit_stamp_palette**](StampApi.md#edit_stamp_palette) | **PATCH** /stamp-palettes/{paletteId} | スタンプパレットを編集
 *StampApi* | [**get_message_stamps**](StampApi.md#get_message_stamps) | **GET** /messages/{messageId}/stamps | メッセージのスタンプリストを取得
 *StampApi* | [**get_my_stamp_history**](StampApi.md#get_my_stamp_history) | **GET** /users/me/stamp-history | スタンプ履歴を取得
+*StampApi* | [**get_my_stamp_recommendations**](StampApi.md#get_my_stamp_recommendations) | **GET** /users/me/stamp-recommendations | スタンプレコメンドを取得
 *StampApi* | [**get_stamp**](StampApi.md#get_stamp) | **GET** /stamps/{stampId} | スタンプ情報を取得
 *StampApi* | [**get_stamp_image**](StampApi.md#get_stamp_image) | **GET** /stamps/{stampId}/image | スタンプ画像を取得
 *StampApi* | [**get_stamp_palette**](StampApi.md#get_stamp_palette) | **GET** /stamp-palettes/{paletteId} | スタンプパレットを取得
@@ -219,6 +233,7 @@ Class | Method | HTTP request | Description
 *WebhookApi* | [**change_webhook_icon**](WebhookApi.md#change_webhook_icon) | **PUT** /webhooks/{webhookId}/icon | Webhookのアイコンを変更
 *WebhookApi* | [**create_webhook**](WebhookApi.md#create_webhook) | **POST** /webhooks | Webhookを新規作成
 *WebhookApi* | [**delete_webhook**](WebhookApi.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Webhookを削除
+*WebhookApi* | [**delete_webhook_message**](WebhookApi.md#delete_webhook_message) | **DELETE** /webhooks/{webhookId}/messages/{messageId} | Webhookの投稿メッセージを削除
 *WebhookApi* | [**edit_webhook**](WebhookApi.md#edit_webhook) | **PATCH** /webhooks/{webhookId} | Webhook情報を変更
 *WebhookApi* | [**get_webhook**](WebhookApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Webhook情報を取得
 *WebhookApi* | [**get_webhook_icon**](WebhookApi.md#get_webhook_icon) | **GET** /webhooks/{webhookId}/icon | Webhookのアイコンを取得
@@ -233,6 +248,7 @@ Class | Method | HTTP request | Description
 
  - [ActiveOAuth2Token](ActiveOAuth2Token.md)
  - [ActivityTimelineMessage](ActivityTimelineMessage.md)
+ - [AddUserGroupMemberRequest](AddUserGroupMemberRequest.md)
  - [Bot](Bot.md)
  - [BotDetail](BotDetail.md)
  - [BotEventLog](BotEventLog.md)
@@ -245,6 +261,7 @@ Class | Method | HTTP request | Description
  - [ChannelEvent](ChannelEvent.md)
  - [ChannelEventDetail](ChannelEventDetail.md)
  - [ChannelList](ChannelList.md)
+ - [ChannelPath](ChannelPath.md)
  - [ChannelStats](ChannelStats.md)
  - [ChannelStatsStamp](ChannelStatsStamp.md)
  - [ChannelStatsUser](ChannelStatsUser.md)
@@ -262,6 +279,7 @@ Class | Method | HTTP request | Description
  - [ForcedNotificationChangedEvent](ForcedNotificationChangedEvent.md)
  - [GetBot200Response](GetBot200Response.md)
  - [GetClient200Response](GetClient200Response.md)
+ - [GetMyStampRecommendations200ResponseInner](GetMyStampRecommendations200ResponseInner.md)
  - [GetNotifyCitation](GetNotifyCitation.md)
  - [LoginSession](LoginSession.md)
  - [Message](Message.md)
@@ -326,7 +344,21 @@ Class | Method | HTTP request | Description
  - [PutMyPasswordRequest](PutMyPasswordRequest.md)
  - [PutNotifyCitationRequest](PutNotifyCitationRequest.md)
  - [PutUserPasswordRequest](PutUserPasswordRequest.md)
+ - [QallEndpointResponse](QallEndpointResponse.md)
+ - [QallMetadataRequest](QallMetadataRequest.md)
+ - [QallMetadataResponse](QallMetadataResponse.md)
+ - [QallParticipant](QallParticipant.md)
+ - [QallParticipantRequest](QallParticipantRequest.md)
+ - [QallParticipantRequestUsersInner](QallParticipantRequestUsersInner.md)
+ - [QallParticipantResponse](QallParticipantResponse.md)
+ - [QallParticipantResponseResultsInner](QallParticipantResponseResultsInner.md)
+ - [QallRoomWithParticipants](QallRoomWithParticipants.md)
+ - [QallTokenResponse](QallTokenResponse.md)
  - [Session](Session.md)
+ - [SoundboardItem](SoundboardItem.md)
+ - [SoundboardPlayRequest](SoundboardPlayRequest.md)
+ - [SoundboardPlayResponse](SoundboardPlayResponse.md)
+ - [SoundboardUploadResponse](SoundboardUploadResponse.md)
  - [Stamp](Stamp.md)
  - [StampHistoryEntry](StampHistoryEntry.md)
  - [StampPalette](StampPalette.md)
