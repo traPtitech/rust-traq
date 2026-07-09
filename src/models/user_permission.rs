@@ -115,6 +115,8 @@ pub enum UserPermission {
     RemoveMessageStamp,
     #[serde(rename = "get_my_stamp_history")]
     GetMyStampHistory,
+    #[serde(rename = "get_my_stamp_recommendations")]
+    GetMyStampRecommendations,
     #[serde(rename = "get_stamp_palette")]
     GetStampPalette,
     #[serde(rename = "create_stamp_palette")]
@@ -235,6 +237,7 @@ impl ToString for UserPermission {
             Self::AddMessageStamp => String::from("add_message_stamp"),
             Self::RemoveMessageStamp => String::from("remove_message_stamp"),
             Self::GetMyStampHistory => String::from("get_my_stamp_history"),
+            Self::GetMyStampRecommendations => String::from("get_my_stamp_recommendations"),
             Self::GetStampPalette => String::from("get_stamp_palette"),
             Self::CreateStampPalette => String::from("create_stamp_palette"),
             Self::EditStampPalette => String::from("edit_stamp_palette"),
