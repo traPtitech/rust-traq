@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **uuid::Uuid** | ファイルUUID | [required] |
-**dl** | Option<**i32**> | 1を指定するとレスポンスにContent-Dispositionヘッダーが付与されます |  |
+**dl** | Option<**i32**> | このクエリパラメータは廃止されており、意味を持ちません（現在、このパラメータが0の場合も1の場合もレスポンスにはContent-Dispositionヘッダーが付与されます） |  |
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/jpeg
+- **Accept**: image/png, image/jpeg, image/svg+xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
