@@ -15,6 +15,8 @@
 pub enum ChannelViewState {
     #[serde(rename = "none")]
     None,
+    #[serde(rename = "stale_viewing")]
+    StaleViewing,
     #[serde(rename = "monitoring")]
     Monitoring,
     #[serde(rename = "editing")]
@@ -25,6 +27,7 @@ impl ToString for ChannelViewState {
     fn to_string(&self) -> String {
         match self {
             Self::None => String::from("none"),
+            Self::StaleViewing => String::from("stale_viewing"),
             Self::Monitoring => String::from("monitoring"),
             Self::Editing => String::from("editing"),
         }
