@@ -25,12 +25,16 @@ jobs:
       - name: Check format
         run: cargo fmt --all -- --check
       - name: Lint
-        # OpenAPI Generator 6.3 emits these model and API patterns.
+        # OpenAPI Generator 7.27 emits these model and API patterns.
         run: >-
           cargo clippy --all-targets --all-features --
+          -A non_camel_case_types
           -A clippy::too_many_arguments
           -A clippy::derivable_impls
           -A clippy::empty_docs
           -A clippy::empty_line_after_doc_comments
           -A clippy::to_string_trait_impl
+          -A clippy::needless_return
+          -A clippy::into_iter_on_ref
+          -A clippy::manual_map
           -D warnings
