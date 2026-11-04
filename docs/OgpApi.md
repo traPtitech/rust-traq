@@ -41,7 +41,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_ogp
 
-> crate::models::Ogp get_ogp(url)
+> models::Ogp get_ogp(url)
 OGP情報を取得
 
 指定されたURLのOGP情報を取得します。 指定されたURLに対するOGP情報が見つからなかった場合、typeがemptyに設定された空のOGP情報を返します。 
@@ -55,7 +55,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Ogp**](Ogp.md)
+[**models::Ogp**](Ogp.md)
 
 ### Authorization
 

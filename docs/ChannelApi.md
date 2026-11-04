@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_channel**](ChannelApi.md#get_channel) | **GET** /channels/{channelId} | チャンネル情報を取得
 [**get_channel_bots**](ChannelApi.md#get_channel_bots) | **GET** /channels/{channelId}/bots | チャンネル参加中のBOTのリストを取得
 [**get_channel_events**](ChannelApi.md#get_channel_events) | **GET** /channels/{channelId}/events | チャンネルイベントのリストを取得
+[**get_channel_path**](ChannelApi.md#get_channel_path) | **GET** /channels/{channelId}/path | 指定したチャンネルパスを取得
 [**get_channel_pins**](ChannelApi.md#get_channel_pins) | **GET** /channels/{channelId}/pins | チャンネルピンのリストを取得
 [**get_channel_stats**](ChannelApi.md#get_channel_stats) | **GET** /channels/{channelId}/stats | チャンネル統計情報を取得
 [**get_channel_subscribers**](ChannelApi.md#get_channel_subscribers) | **GET** /channels/{channelId}/subscribers | チャンネルの通知購読者のリストを取得
@@ -26,7 +27,7 @@ Method | HTTP request | Description
 
 ## create_channel
 
-> crate::models::Channel create_channel(post_channel_request)
+> models::Channel create_channel(post_channel_request)
 チャンネルを作成
 
 チャンネルを作成します。 階層が6以上になるチャンネルは作成できません。
@@ -40,7 +41,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Channel**](Channel.md)
+[**models::Channel**](Channel.md)
 
 ### Authorization
 
@@ -149,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel
 
-> crate::models::Channel get_channel(channel_id)
+> models::Channel get_channel(channel_id)
 チャンネル情報を取得
 
 指定したチャンネルの情報を取得します。
@@ -163,7 +164,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Channel**](Channel.md)
+[**models::Channel**](Channel.md)
 
 ### Authorization
 
@@ -179,7 +180,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_bots
 
-> Vec<crate::models::BotUser> get_channel_bots(channel_id)
+> Vec<models::BotUser> get_channel_bots(channel_id)
 チャンネル参加中のBOTのリストを取得
 
 指定したチャンネルに参加しているBOTのリストを取得します。
@@ -193,7 +194,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::BotUser>**](BotUser.md)
+[**Vec<models::BotUser>**](BotUser.md)
 
 ### Authorization
 
@@ -209,7 +210,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_events
 
-> Vec<crate::models::ChannelEvent> get_channel_events(channel_id, limit, offset, since, until, inclusive, order)
+> Vec<models::ChannelEvent> get_channel_events(channel_id, limit, offset, since, until, inclusive, order)
 チャンネルイベントのリストを取得
 
 指定したチャンネルのイベントリストを取得します。
@@ -222,14 +223,44 @@ Name | Type | Description  | Required | Notes
 **channel_id** | **uuid::Uuid** | チャンネルUUID | [required] |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 
 ### Return type
 
-[**Vec<crate::models::ChannelEvent>**](ChannelEvent.md)
+[**Vec<models::ChannelEvent>**](ChannelEvent.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_channel_path
+
+> models::ChannelPath get_channel_path(channel_id)
+指定したチャンネルパスを取得
+
+指定されたチャンネルのパスを取得します。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**channel_id** | **uuid::Uuid** | チャンネルUUID | [required] |
+
+### Return type
+
+[**models::ChannelPath**](ChannelPath.md)
 
 ### Authorization
 
@@ -245,7 +276,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_pins
 
-> Vec<crate::models::Pin> get_channel_pins(channel_id)
+> Vec<models::Pin> get_channel_pins(channel_id)
 チャンネルピンのリストを取得
 
 指定したチャンネルにピン留めされているピンメッセージのリストを取得します。
@@ -259,7 +290,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Pin>**](Pin.md)
+[**Vec<models::Pin>**](Pin.md)
 
 ### Authorization
 
@@ -275,7 +306,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_stats
 
-> crate::models::ChannelStats get_channel_stats(channel_id)
+> models::ChannelStats get_channel_stats(channel_id, exclude_deleted_messages)
 チャンネル統計情報を取得
 
 指定したチャンネルの統計情報を取得します。
@@ -286,10 +317,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **channel_id** | **uuid::Uuid** | チャンネルUUID | [required] |
+**exclude_deleted_messages** | Option<**bool**> | 削除されたメッセージを除外するかどうか(デフォルト false) |  |
 
 ### Return type
 
-[**crate::models::ChannelStats**](ChannelStats.md)
+[**models::ChannelStats**](ChannelStats.md)
 
 ### Authorization
 
@@ -335,7 +367,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_topic
 
-> crate::models::ChannelTopic get_channel_topic(channel_id)
+> models::ChannelTopic get_channel_topic(channel_id)
 チャンネルトピックを取得
 
 指定したチャンネルのトピックを取得します。
@@ -349,7 +381,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ChannelTopic**](ChannelTopic.md)
+[**models::ChannelTopic**](ChannelTopic.md)
 
 ### Authorization
 
@@ -365,7 +397,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_viewers
 
-> Vec<crate::models::ChannelViewer> get_channel_viewers(channel_id)
+> Vec<models::ChannelViewer> get_channel_viewers(channel_id)
 チャンネル閲覧者リストを取得
 
 指定したチャンネルの閲覧者のリストを取得します。
@@ -379,7 +411,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::ChannelViewer>**](ChannelViewer.md)
+[**Vec<models::ChannelViewer>**](ChannelViewer.md)
 
 ### Authorization
 
@@ -395,7 +427,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channels
 
-> crate::models::ChannelList get_channels(include_dm)
+> models::ChannelList get_channels(include_dm, path)
 チャンネルリストを取得
 
 チャンネルのリストを取得します。
@@ -406,10 +438,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **include_dm** | Option<**bool**> | ダイレクトメッセージチャンネルをレスポンスに含めるかどうか |  |[default to false]
+**path** | Option<**String**> | パスが一致するチャンネルのみを取得する |  |
 
 ### Return type
 
-[**crate::models::ChannelList**](ChannelList.md)
+[**models::ChannelList**](ChannelList.md)
 
 ### Authorization
 
@@ -425,7 +458,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_messages
 
-> Vec<crate::models::Message> get_messages(channel_id, limit, offset, since, until, inclusive, order)
+> Vec<models::Message> get_messages(channel_id, limit, offset, since, until, inclusive, order)
 チャンネルメッセージのリストを取得
 
 指定したチャンネルのメッセージのリストを取得します。
@@ -438,14 +471,14 @@ Name | Type | Description  | Required | Notes
 **channel_id** | **uuid::Uuid** | チャンネルUUID | [required] |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 
 ### Return type
 
-[**Vec<crate::models::Message>**](Message.md)
+[**Vec<models::Message>**](Message.md)
 
 ### Authorization
 
@@ -461,7 +494,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_dm_channel
 
-> crate::models::DmChannel get_user_dm_channel(user_id)
+> models::DmChannel get_user_dm_channel(user_id)
 DMチャンネル情報を取得
 
 指定したユーザーとのダイレクトメッセージチャンネルの情報を返します。 ダイレクトメッセージチャンネルが存在しなかった場合、自動的に作成されます。
@@ -475,7 +508,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::DmChannel**](DMChannel.md)
+[**models::DmChannel**](DMChannel.md)
 
 ### Authorization
 
@@ -491,7 +524,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_message
 
-> crate::models::Message post_message(channel_id, post_message_request)
+> models::Message post_message(channel_id, post_message_request)
 チャンネルにメッセージを投稿
 
 指定したチャンネルにメッセージを投稿します。 embedをtrueに指定すると、メッセージ埋め込みが自動で行われます。 アーカイブされているチャンネルに投稿することはできません。
@@ -506,7 +539,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Message**](Message.md)
+[**models::Message**](Message.md)
 
 ### Authorization
 

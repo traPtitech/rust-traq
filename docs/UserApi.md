@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## add_user_tag
 
-> crate::models::UserTag add_user_tag(user_id, post_user_tag_request)
+> models::UserTag add_user_tag(user_id, post_user_tag_request)
 ユーザーにタグを追加
 
 指定したユーザーに指定したタグを追加します。 Webhookユーザーにタグを追加することは出来ません。
@@ -39,7 +39,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserTag**](UserTag.md)
+[**models::UserTag**](UserTag.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **uuid::Uuid** | ユーザーUUID | [required] |
-**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MB,`Config.Imaging.MaxPixels`(default: 2560*1600)までのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_user
 
-> crate::models::UserDetail create_user(post_user_request)
+> models::UserDetail create_user(post_user_request)
 ユーザーを登録
 
 ユーザーを登録します。 管理者権限が必要です。
@@ -131,7 +131,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserDetail**](UserDetail.md)
+[**models::UserDetail**](UserDetail.md)
 
 ### Authorization
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_direct_messages
 
-> Vec<crate::models::Message> get_direct_messages(user_id, limit, offset, since, until, inclusive, order)
+> Vec<models::Message> get_direct_messages(user_id, limit, offset, since, until, inclusive, order)
 ダイレクトメッセージのリストを取得
 
 指定したユーザーとのダイレクトメッセージのリストを取得します。
@@ -223,14 +223,14 @@ Name | Type | Description  | Required | Notes
 **user_id** | **uuid::Uuid** | ユーザーUUID | [required] |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 
 ### Return type
 
-[**Vec<crate::models::Message>**](Message.md)
+[**Vec<models::Message>**](Message.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user
 
-> crate::models::UserDetail get_user(user_id)
+> models::UserDetail get_user(user_id)
 ユーザー詳細情報を取得
 
 指定したユーザーの詳細情報を取得します。
@@ -260,7 +260,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserDetail**](UserDetail.md)
+[**models::UserDetail**](UserDetail.md)
 
 ### Authorization
 
@@ -276,7 +276,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_dm_channel
 
-> crate::models::DmChannel get_user_dm_channel(user_id)
+> models::DmChannel get_user_dm_channel(user_id)
 DMチャンネル情報を取得
 
 指定したユーザーとのダイレクトメッセージチャンネルの情報を返します。 ダイレクトメッセージチャンネルが存在しなかった場合、自動的に作成されます。
@@ -290,7 +290,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::DmChannel**](DMChannel.md)
+[**models::DmChannel**](DMChannel.md)
 
 ### Authorization
 
@@ -336,7 +336,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_stats
 
-> crate::models::UserStats get_user_stats(user_id)
+> models::UserStats get_user_stats(user_id)
 ユーザー統計情報を取得
 
 指定したユーザーの統計情報を取得します。
@@ -350,7 +350,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserStats**](UserStats.md)
+[**models::UserStats**](UserStats.md)
 
 ### Authorization
 
@@ -366,7 +366,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_tags
 
-> Vec<crate::models::UserTag> get_user_tags(user_id)
+> Vec<models::UserTag> get_user_tags(user_id)
 ユーザーのタグリストを取得
 
 指定したユーザーのタグリストを取得します。
@@ -380,7 +380,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::UserTag>**](UserTag.md)
+[**Vec<models::UserTag>**](UserTag.md)
 
 ### Authorization
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_users
 
-> Vec<crate::models::User> get_users(include_suspended, name)
+> Vec<models::User> get_users(include_suspended, name)
 ユーザーのリストを取得
 
 ユーザーのリストを取得します。 `include-suspended`を指定しない場合、レスポンスにはユーザーアカウント状態が\"1: 有効\"であるユーザーのみが含まれます。 `include-suspended`と`name`を同時に指定することはできません。
@@ -411,7 +411,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::User>**](User.md)
+[**Vec<models::User>**](User.md)
 
 ### Authorization
 
@@ -427,7 +427,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_direct_message
 
-> crate::models::Message post_direct_message(user_id, post_message_request)
+> models::Message post_direct_message(user_id, post_message_request)
 ダイレクトメッセージを送信
 
 指定したユーザーにダイレクトメッセージを送信します。
@@ -442,7 +442,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Message**](Message.md)
+[**models::Message**](Message.md)
 
 ### Authorization
 

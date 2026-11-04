@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_activity_timeline
 
-> Vec<crate::models::ActivityTimelineMessage> get_activity_timeline(limit, all, per_channel)
+> Vec<models::ActivityTimelineMessage> get_activity_timeline(limit, all, per_channel)
 アクテビティタイムラインを取得
 
 パブリックチャンネルの直近の投稿メッセージを作成日時の降順で取得します。 `all`が`true`でない場合、購読チャンネルのみのタイムラインを取得します
@@ -27,7 +27,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::ActivityTimelineMessage>**](ActivityTimelineMessage.md)
+[**Vec<models::ActivityTimelineMessage>**](ActivityTimelineMessage.md)
 
 ### Authorization
 

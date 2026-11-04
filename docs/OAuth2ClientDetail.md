@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | クライアントUUID | 
-**developer_id** | [**uuid::Uuid**](uuid::Uuid.md) | クライアント開発者UUID | 
+**developer_id** | **uuid::Uuid** | クライアント開発者UUID | 
 **description** | **String** | 説明 | 
 **name** | **String** | クライアント名 | 
-**scopes** | [**Vec<crate::models::OAuth2Scope>**](OAuth2Scope.md) | 要求スコープの配列 | 
+**scopes** | [**Vec<models::OAuth2Scope>**](OAuth2Scope.md) | 要求スコープの配列 | 
 **callback_url** | **String** | コールバックURL | 
 **secret** | **String** | クライアントシークレット | 
 **confidential** | **bool** | confidential client なら true, public client なら false | 

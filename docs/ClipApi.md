@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## clip_message
 
-> crate::models::ClippedMessage clip_message(folder_id, post_clip_folder_message_request)
+> models::ClippedMessage clip_message(folder_id, post_clip_folder_message_request)
 メッセージをクリップフォルダに追加
 
 指定したメッセージを指定したクリップフォルダに追加します。
@@ -33,7 +33,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ClippedMessage**](ClippedMessage.md)
+[**models::ClippedMessage**](ClippedMessage.md)
 
 ### Authorization
 
@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_clip_folder
 
-> crate::models::ClipFolder create_clip_folder(post_clip_folder_request)
+> models::ClipFolder create_clip_folder(post_clip_folder_request)
 クリップフォルダを作成
 
 クリップフォルダを作成します。 既にあるフォルダと同名のフォルダを作成することは可能です。
@@ -63,7 +63,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ClipFolder**](ClipFolder.md)
+[**models::ClipFolder**](ClipFolder.md)
 
 ### Authorization
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_clip_folder
 
-> crate::models::ClipFolder get_clip_folder(folder_id)
+> models::ClipFolder get_clip_folder(folder_id)
 クリップフォルダ情報を取得
 
 指定したクリップフォルダの情報を取得します。
@@ -154,7 +154,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ClipFolder**](ClipFolder.md)
+[**models::ClipFolder**](ClipFolder.md)
 
 ### Authorization
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_clip_folders
 
-> Vec<crate::models::ClipFolder> get_clip_folders()
+> Vec<models::ClipFolder> get_clip_folders()
 クリップフォルダのリストを取得
 
 自身が所有するクリップフォルダのリストを取得します。
@@ -181,7 +181,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::ClipFolder>**](ClipFolder.md)
+[**Vec<models::ClipFolder>**](ClipFolder.md)
 
 ### Authorization
 
@@ -197,7 +197,7 @@ This endpoint does not need any parameter.
 
 ## get_clips
 
-> Vec<crate::models::ClippedMessage> get_clips(folder_id, limit, offset, order)
+> Vec<models::ClippedMessage> get_clips(folder_id, limit, offset, order)
 フォルダ内のクリップのリストを取得
 
 指定したフォルダ内のクリップのリストを取得します。 `order`を指定しない場合、クリップした日時の新しい順で返されます。
@@ -214,7 +214,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::ClippedMessage>**](ClippedMessage.md)
+[**Vec<models::ClippedMessage>**](ClippedMessage.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_message_clips
 
-> Vec<crate::models::MessageClip> get_message_clips(message_id)
+> Vec<models::MessageClip> get_message_clips(message_id)
 自分のクリップを取得
 
 対象のメッセージの自分のクリップの一覧を返します。
@@ -244,7 +244,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::MessageClip>**](MessageClip.md)
+[**Vec<models::MessageClip>**](MessageClip.md)
 
 ### Authorization
 

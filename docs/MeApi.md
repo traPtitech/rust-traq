@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**get_my_qr_code**](MeApi.md#get_my_qr_code) | **GET** /users/me/qr-code | QRコードを取得
 [**get_my_sessions**](MeApi.md#get_my_sessions) | **GET** /users/me/sessions | 自分のログインセッションリストを取得
 [**get_my_stamp_history**](MeApi.md#get_my_stamp_history) | **GET** /users/me/stamp-history | スタンプ履歴を取得
+[**get_my_stamp_recommendations**](MeApi.md#get_my_stamp_recommendations) | **GET** /users/me/stamp-recommendations | スタンプレコメンドを取得
 [**get_my_stars**](MeApi.md#get_my_stars) | **GET** /users/me/stars | スターチャンネルリストを取得
 [**get_my_tokens**](MeApi.md#get_my_tokens) | **GET** /users/me/tokens | 有効トークンのリストを取得
 [**get_my_unread_channels**](MeApi.md#get_my_unread_channels) | **GET** /users/me/unread | 未読チャンネルを取得
@@ -70,7 +71,7 @@ Name | Type | Description  | Required | Notes
 
 ## add_my_user_tag
 
-> crate::models::UserTag add_my_user_tag(post_user_tag_request)
+> models::UserTag add_my_user_tag(post_user_tag_request)
 自分にタグを追加
 
 自分に新しくタグを追加します。
@@ -84,7 +85,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserTag**](UserTag.md)
+[**models::UserTag**](UserTag.md)
 
 ### Authorization
 
@@ -110,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MB,`Config.Imaging.MaxPixels`(default: 2560*1600)までのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -251,7 +252,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_me
 
-> crate::models::MyUserDetail get_me()
+> models::MyUserDetail get_me()
 自分のユーザー詳細を取得
 
 自身のユーザー詳細情報を取得します。
@@ -262,7 +263,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::MyUserDetail**](MyUserDetail.md)
+[**models::MyUserDetail**](MyUserDetail.md)
 
 ### Authorization
 
@@ -278,7 +279,7 @@ This endpoint does not need any parameter.
 
 ## get_my_channel_subscriptions
 
-> Vec<crate::models::UserSubscribeState> get_my_channel_subscriptions()
+> Vec<models::UserSubscribeState> get_my_channel_subscriptions()
 自分のチャンネル購読状態を取得
 
 自身のチャンネル購読状態を取得します。
@@ -289,7 +290,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::UserSubscribeState>**](UserSubscribeState.md)
+[**Vec<models::UserSubscribeState>**](UserSubscribeState.md)
 
 ### Authorization
 
@@ -305,7 +306,7 @@ This endpoint does not need any parameter.
 
 ## get_my_external_accounts
 
-> Vec<crate::models::ExternalProviderUser> get_my_external_accounts()
+> Vec<models::ExternalProviderUser> get_my_external_accounts()
 外部ログインアカウント一覧を取得
 
 自分に紐付けられている外部ログインアカウント一覧を取得します。
@@ -316,7 +317,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::ExternalProviderUser>**](ExternalProviderUser.md)
+[**Vec<models::ExternalProviderUser>**](ExternalProviderUser.md)
 
 ### Authorization
 
@@ -359,7 +360,7 @@ This endpoint does not need any parameter.
 
 ## get_my_notify_citation
 
-> crate::models::GetNotifyCitation get_my_notify_citation()
+> models::GetNotifyCitation get_my_notify_citation()
 メッセージ引用通知の設定情報を取得
 
 メッセージ引用通知の設定情報を変更します。
@@ -370,7 +371,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::GetNotifyCitation**](GetNotifyCitation.md)
+[**models::GetNotifyCitation**](GetNotifyCitation.md)
 
 ### Authorization
 
@@ -416,7 +417,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_my_sessions
 
-> Vec<crate::models::LoginSession> get_my_sessions()
+> Vec<models::LoginSession> get_my_sessions()
 自分のログインセッションリストを取得
 
 自分のログインセッションのリストを取得します。
@@ -427,7 +428,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::LoginSession>**](LoginSession.md)
+[**Vec<models::LoginSession>**](LoginSession.md)
 
 ### Authorization
 
@@ -443,7 +444,7 @@ This endpoint does not need any parameter.
 
 ## get_my_stamp_history
 
-> Vec<crate::models::StampHistoryEntry> get_my_stamp_history(limit)
+> Vec<models::StampHistoryEntry> get_my_stamp_history(limit)
 スタンプ履歴を取得
 
 自分のスタンプ履歴を最大100件まで取得します。 結果は降順で返されます。  このAPIが返すスタンプ履歴は厳密な履歴ではありません。
@@ -457,7 +458,37 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::StampHistoryEntry>**](StampHistoryEntry.md)
+[**Vec<models::StampHistoryEntry>**](StampHistoryEntry.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_my_stamp_recommendations
+
+> Vec<models::GetMyStampRecommendations200ResponseInner> get_my_stamp_recommendations(limit)
+スタンプレコメンドを取得
+
+自分のスタンプレコメンドを最大200件まで取得します。 結果は推薦度の高い順で返されます。 スタンプを使用したことがないユーザーの場合は空配列が返されます。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**limit** | Option<**i32**> | 件数 |  |[default to 100]
+
+### Return type
+
+[**Vec<models::GetMyStampRecommendations200ResponseInner>**](getMyStampRecommendations_200_response_inner.md)
 
 ### Authorization
 
@@ -500,7 +531,7 @@ This endpoint does not need any parameter.
 
 ## get_my_tokens
 
-> Vec<crate::models::ActiveOAuth2Token> get_my_tokens()
+> Vec<models::ActiveOAuth2Token> get_my_tokens()
 有効トークンのリストを取得
 
 有効な自分に発行されたOAuth2トークンのリストを取得します。
@@ -511,7 +542,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::ActiveOAuth2Token>**](ActiveOAuth2Token.md)
+[**Vec<models::ActiveOAuth2Token>**](ActiveOAuth2Token.md)
 
 ### Authorization
 
@@ -527,7 +558,7 @@ This endpoint does not need any parameter.
 
 ## get_my_unread_channels
 
-> Vec<crate::models::UnreadChannel> get_my_unread_channels()
+> Vec<models::UnreadChannel> get_my_unread_channels()
 未読チャンネルを取得
 
 自分が現在未読のチャンネルの未読情報を取得します。
@@ -538,7 +569,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::UnreadChannel>**](UnreadChannel.md)
+[**Vec<models::UnreadChannel>**](UnreadChannel.md)
 
 ### Authorization
 
@@ -554,7 +585,7 @@ This endpoint does not need any parameter.
 
 ## get_my_user_tags
 
-> Vec<crate::models::UserTag> get_my_user_tags()
+> Vec<models::UserTag> get_my_user_tags()
 自分のタグリストを取得
 
 自分に付けられているタグの配列を取得します。
@@ -565,7 +596,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::UserTag>**](UserTag.md)
+[**Vec<models::UserTag>**](UserTag.md)
 
 ### Authorization
 
@@ -581,7 +612,7 @@ This endpoint does not need any parameter.
 
 ## get_my_view_states
 
-> Vec<crate::models::MyChannelViewState> get_my_view_states()
+> Vec<models::MyChannelViewState> get_my_view_states()
 自身のチャンネル閲覧状態一覧を取得
 
 自身のチャンネル閲覧状態一覧を取得します。
@@ -592,7 +623,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::MyChannelViewState>**](MyChannelViewState.md)
+[**Vec<models::MyChannelViewState>**](MyChannelViewState.md)
 
 ### Authorization
 
@@ -608,7 +639,7 @@ This endpoint does not need any parameter.
 
 ## get_oidc_user_info
 
-> crate::models::OidcUserInfo get_oidc_user_info()
+> models::OidcUserInfo get_oidc_user_info()
 自分のユーザー詳細を取得 (OIDC UserInfo)
 
 OIDCトークンを用いてユーザー詳細を取得します。 OIDC UserInfo Endpointです。 
@@ -619,7 +650,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::OidcUserInfo**](OIDCUserInfo.md)
+[**models::OidcUserInfo**](OIDCUserInfo.md)
 
 ### Authorization
 
@@ -635,7 +666,7 @@ This endpoint does not need any parameter.
 
 ## get_user_settings
 
-> crate::models::UserSettings get_user_settings()
+> models::UserSettings get_user_settings()
 ユーザー設定を取得
 
 ユーザー設定を取得します。
@@ -646,7 +677,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::UserSettings**](UserSettings.md)
+[**models::UserSettings**](UserSettings.md)
 
 ### Authorization
 

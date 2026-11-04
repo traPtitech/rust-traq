@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | [**crate::models::ThumbnailType**](ThumbnailType.md) |  | 
+**r#type** | [**models::ThumbnailType**](ThumbnailType.md) |  | 
 **mime** | **String** | MIMEタイプ | 
 **width** | Option<**i32**> | サムネイル幅 | [optional]
 **height** | Option<**i32**> | サムネイル高さ | [optional]

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_web_rtc_state
 
-> Vec<crate::models::WebRtcUserState> get_web_rtc_state()
+> Vec<models::WebRtcUserState> get_web_rtc_state()
 WebRTC状態を取得
 
 現在のWebRTC状態を取得します。
@@ -22,7 +22,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::WebRtcUserState>**](WebRTCUserState.md)
+[**Vec<models::WebRtcUserState>**](WebRTCUserState.md)
 
 ### Authorization
 
@@ -38,7 +38,7 @@ This endpoint does not need any parameter.
 
 ## post_web_rtc_authenticate
 
-> crate::models::WebRtcAuthenticateResult post_web_rtc_authenticate(post_web_rtc_authenticate_request)
+> models::WebRtcAuthenticateResult post_web_rtc_authenticate(post_web_rtc_authenticate_request)
 Skyway用認証API
 
 Skyway WebRTC用の認証API
@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::WebRtcAuthenticateResult**](WebRTCAuthenticateResult.md)
+[**models::WebRtcAuthenticateResult**](WebRTCAuthenticateResult.md)
 
 ### Authorization
 

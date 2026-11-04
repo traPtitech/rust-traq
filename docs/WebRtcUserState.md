@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | [**uuid::Uuid**](uuid::Uuid.md) | ユーザーUUID | 
-**channel_id** | [**uuid::Uuid**](uuid::Uuid.md) | チャンネルUUID | 
-**sessions** | [**Vec<crate::models::Session>**](Session.md) | セッションの配列 | 
+**user_id** | **uuid::Uuid** | ユーザーUUID | 
+**channel_id** | **uuid::Uuid** | チャンネルUUID | 
+**sessions** | [**Vec<models::Session>**](Session.md) | セッションの配列 | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

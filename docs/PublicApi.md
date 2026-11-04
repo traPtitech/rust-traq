@@ -4,9 +4,37 @@ All URIs are relative to *https://q.trap.jp/api/v3*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_meta**](PublicApi.md#get_meta) | **GET** /meta | メタ情報を取得
 [**get_public_user_icon**](PublicApi.md#get_public_user_icon) | **GET** /public/icon/{username} | ユーザーのアイコン画像を取得
 [**get_server_version**](PublicApi.md#get_server_version) | **GET** /version | バージョンを取得
 
+
+
+## get_meta
+
+> models::Meta get_meta()
+メタ情報を取得
+
+初期化に必要な公開情報を取得します。
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::Meta**](Meta.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## get_public_user_icon
@@ -41,7 +69,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_server_version
 
-> crate::models::Version get_server_version()
+> models::Version get_server_version()
 バージョンを取得
 
 サーバーバージョン及びサーバーフラグ情報を取得します。
@@ -52,7 +80,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::Version**](Version.md)
+[**models::Version**](Version.md)
 
 ### Authorization
 

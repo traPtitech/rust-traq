@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**edit_stamp_palette**](StampApi.md#edit_stamp_palette) | **PATCH** /stamp-palettes/{paletteId} | スタンプパレットを編集
 [**get_message_stamps**](StampApi.md#get_message_stamps) | **GET** /messages/{messageId}/stamps | メッセージのスタンプリストを取得
 [**get_my_stamp_history**](StampApi.md#get_my_stamp_history) | **GET** /users/me/stamp-history | スタンプ履歴を取得
+[**get_my_stamp_recommendations**](StampApi.md#get_my_stamp_recommendations) | **GET** /users/me/stamp-recommendations | スタンプレコメンドを取得
 [**get_stamp**](StampApi.md#get_stamp) | **GET** /stamps/{stampId} | スタンプ情報を取得
 [**get_stamp_image**](StampApi.md#get_stamp_image) | **GET** /stamps/{stampId}/image | スタンプ画像を取得
 [**get_stamp_palette**](StampApi.md#get_stamp_palette) | **GET** /stamp-palettes/{paletteId} | スタンプパレットを取得
@@ -89,7 +90,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_stamp
 
-> crate::models::Stamp create_stamp(name, file)
+> models::Stamp create_stamp(name, file)
 スタンプを作成
 
 スタンプを新規作成します。
@@ -104,7 +105,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Stamp**](Stamp.md)
+[**models::Stamp**](Stamp.md)
 
 ### Authorization
 
@@ -120,7 +121,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_stamp_palette
 
-> crate::models::StampPalette create_stamp_palette(post_stamp_palette_request)
+> models::StampPalette create_stamp_palette(post_stamp_palette_request)
 スタンプパレットを作成
 
 スタンプパレットを作成します。
@@ -134,7 +135,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::StampPalette**](StampPalette.md)
+[**models::StampPalette**](StampPalette.md)
 
 ### Authorization
 
@@ -272,7 +273,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_message_stamps
 
-> Vec<crate::models::MessageStamp> get_message_stamps(message_id)
+> Vec<models::MessageStamp> get_message_stamps(message_id)
 メッセージのスタンプリストを取得
 
 指定したメッセージに押されているスタンプのリストを取得します。
@@ -286,7 +287,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::MessageStamp>**](MessageStamp.md)
+[**Vec<models::MessageStamp>**](MessageStamp.md)
 
 ### Authorization
 
@@ -302,7 +303,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_my_stamp_history
 
-> Vec<crate::models::StampHistoryEntry> get_my_stamp_history(limit)
+> Vec<models::StampHistoryEntry> get_my_stamp_history(limit)
 スタンプ履歴を取得
 
 自分のスタンプ履歴を最大100件まで取得します。 結果は降順で返されます。  このAPIが返すスタンプ履歴は厳密な履歴ではありません。
@@ -316,7 +317,37 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::StampHistoryEntry>**](StampHistoryEntry.md)
+[**Vec<models::StampHistoryEntry>**](StampHistoryEntry.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_my_stamp_recommendations
+
+> Vec<models::GetMyStampRecommendations200ResponseInner> get_my_stamp_recommendations(limit)
+スタンプレコメンドを取得
+
+自分のスタンプレコメンドを最大200件まで取得します。 結果は推薦度の高い順で返されます。 スタンプを使用したことがないユーザーの場合は空配列が返されます。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**limit** | Option<**i32**> | 件数 |  |[default to 100]
+
+### Return type
+
+[**Vec<models::GetMyStampRecommendations200ResponseInner>**](getMyStampRecommendations_200_response_inner.md)
 
 ### Authorization
 
@@ -332,7 +363,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_stamp
 
-> crate::models::Stamp get_stamp(stamp_id)
+> models::Stamp get_stamp(stamp_id)
 スタンプ情報を取得
 
 指定したスタンプの情報を取得します。
@@ -346,7 +377,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Stamp**](Stamp.md)
+[**models::Stamp**](Stamp.md)
 
 ### Authorization
 
@@ -385,14 +416,14 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/gif, image/jpeg
+- **Accept**: image/png, image/gif, image/jpeg, image/svg+xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## get_stamp_palette
 
-> crate::models::StampPalette get_stamp_palette(palette_id)
+> models::StampPalette get_stamp_palette(palette_id)
 スタンプパレットを取得
 
 指定したスタンプパレットの情報を取得します。
@@ -406,7 +437,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::StampPalette**](StampPalette.md)
+[**models::StampPalette**](StampPalette.md)
 
 ### Authorization
 
@@ -422,7 +453,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_stamp_palettes
 
-> Vec<crate::models::StampPalette> get_stamp_palettes()
+> Vec<models::StampPalette> get_stamp_palettes()
 スタンプパレットのリストを取得
 
 自身が所有しているスタンプパレットのリストを取得します。
@@ -433,7 +464,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::StampPalette>**](StampPalette.md)
+[**Vec<models::StampPalette>**](StampPalette.md)
 
 ### Authorization
 
@@ -449,7 +480,7 @@ This endpoint does not need any parameter.
 
 ## get_stamp_stats
 
-> crate::models::StampStats get_stamp_stats(stamp_id)
+> models::StampStats get_stamp_stats(stamp_id)
 スタンプ統計情報を取得
 
 指定したスタンプの統計情報を取得します。
@@ -463,7 +494,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::StampStats**](StampStats.md)
+[**models::StampStats**](StampStats.md)
 
 ### Authorization
 
@@ -479,7 +510,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_stamps
 
-> Vec<crate::models::StampWithThumbnail> get_stamps(include_unicode, r#type)
+> Vec<models::StampWithThumbnail> get_stamps(include_unicode, r#type)
 スタンプリストを取得
 
 スタンプのリストを取得します。
@@ -494,7 +525,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::StampWithThumbnail>**](StampWithThumbnail.md)
+[**Vec<models::StampWithThumbnail>**](StampWithThumbnail.md)
 
 ### Authorization
 

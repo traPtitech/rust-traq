@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## add_my_user_tag
 
-> crate::models::UserTag add_my_user_tag(post_user_tag_request)
+> models::UserTag add_my_user_tag(post_user_tag_request)
 自分にタグを追加
 
 自分に新しくタグを追加します。
@@ -32,7 +32,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserTag**](UserTag.md)
+[**models::UserTag**](UserTag.md)
 
 ### Authorization
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Required | Notes
 
 ## add_user_tag
 
-> crate::models::UserTag add_user_tag(user_id, post_user_tag_request)
+> models::UserTag add_user_tag(user_id, post_user_tag_request)
 ユーザーにタグを追加
 
 指定したユーザーに指定したタグを追加します。 Webhookユーザーにタグを追加することは出来ません。
@@ -63,7 +63,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::UserTag**](UserTag.md)
+[**models::UserTag**](UserTag.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_my_user_tags
 
-> Vec<crate::models::UserTag> get_my_user_tags()
+> Vec<models::UserTag> get_my_user_tags()
 自分のタグリストを取得
 
 自分に付けられているタグの配列を取得します。
@@ -153,7 +153,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::UserTag>**](UserTag.md)
+[**Vec<models::UserTag>**](UserTag.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ This endpoint does not need any parameter.
 
 ## get_tag
 
-> crate::models::Tag get_tag(tag_id)
+> models::Tag get_tag(tag_id)
 タグ情報を取得
 
 指定したタグの情報を取得します。
@@ -183,7 +183,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Tag**](Tag.md)
+[**models::Tag**](Tag.md)
 
 ### Authorization
 
@@ -199,7 +199,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_tags
 
-> Vec<crate::models::UserTag> get_user_tags(user_id)
+> Vec<models::UserTag> get_user_tags(user_id)
 ユーザーのタグリストを取得
 
 指定したユーザーのタグリストを取得します。
@@ -213,7 +213,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::UserTag>**](UserTag.md)
+[**Vec<models::UserTag>**](UserTag.md)
 
 ### Authorization
 

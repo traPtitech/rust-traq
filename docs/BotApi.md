@@ -65,7 +65,7 @@ BOTのアイコン画像を変更
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **bot_id** | **uuid::Uuid** | BOTUUID | [required] |
-**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MB,`Config.Imaging.MaxPixels`(default: 2560*1600)までのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -112,7 +112,7 @@ This endpoint does not need any parameter.
 
 ## create_bot
 
-> crate::models::BotDetail create_bot(post_bot_request)
+> models::BotDetail create_bot(post_bot_request)
 BOTを作成
 
 BOTを作成します。 作成後に購読イベントの設定を行う必要があります。 さらにHTTP Modeの場合はアクティベーションを行う必要があります。
@@ -126,7 +126,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::BotDetail**](BotDetail.md)
+[**models::BotDetail**](BotDetail.md)
 
 ### Authorization
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_bot
 
-> crate::models::GetBot200Response get_bot(bot_id, detail)
+> models::GetBot200Response get_bot(bot_id, detail)
 BOT情報を取得
 
 指定したBOTのBOT情報を取得します。 BOT詳細情報を取得する場合は、対象のBOTの管理権限が必要です。
@@ -218,7 +218,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GetBot200Response**](getBot_200_response.md)
+[**models::GetBot200Response**](getBot_200_response.md)
 
 ### Authorization
 
@@ -264,7 +264,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_bot_logs
 
-> Vec<crate::models::BotEventLog> get_bot_logs(bot_id, limit, offset)
+> Vec<models::BotEventLog> get_bot_logs(bot_id, limit, offset)
 BOTのイベントログを取得
 
 指定したBOTのイベントログを取得します。 対象のBOTの管理権限が必要です。
@@ -280,7 +280,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::BotEventLog>**](BotEventLog.md)
+[**Vec<models::BotEventLog>**](BotEventLog.md)
 
 ### Authorization
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_bots
 
-> Vec<crate::models::Bot> get_bots(all)
+> Vec<models::Bot> get_bots(all)
 BOTリストを取得
 
 BOT情報のリストを取得します。 allを指定しない場合、自分が開発者のBOTのみを返します。
@@ -310,7 +310,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Bot>**](Bot.md)
+[**Vec<models::Bot>**](Bot.md)
 
 ### Authorization
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_bots
 
-> Vec<crate::models::BotUser> get_channel_bots(channel_id)
+> Vec<models::BotUser> get_channel_bots(channel_id)
 チャンネル参加中のBOTのリストを取得
 
 指定したチャンネルに参加しているBOTのリストを取得します。
@@ -340,7 +340,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::BotUser>**](BotUser.md)
+[**Vec<models::BotUser>**](BotUser.md)
 
 ### Authorization
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Required | Notes
 
 ## reissue_bot
 
-> crate::models::BotTokens reissue_bot(bot_id)
+> models::BotTokens reissue_bot(bot_id)
 BOTのトークンを再発行
 
 指定したBOTの現在の各種トークンを無効化し、再発行を行います。 対象のBOTの管理権限が必要です。
@@ -462,7 +462,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::BotTokens**](BotTokens.md)
+[**models::BotTokens**](BotTokens.md)
 
 ### Authorization
 
