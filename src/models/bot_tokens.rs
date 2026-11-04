@@ -18,14 +18,22 @@ pub struct BotTokens {
     /// BOTアクセストークン
     #[serde(rename = "accessToken")]
     pub access_token: String,
+    /// BOTアクセストークンが無効化されているかどうか
+    #[serde(rename = "accessTokenRevoked")]
+    pub access_token_revoked: bool,
 }
 
 impl BotTokens {
     /// BOTのトークン情報
-    pub fn new(verification_token: String, access_token: String) -> BotTokens {
+    pub fn new(
+        verification_token: String,
+        access_token: String,
+        access_token_revoked: bool,
+    ) -> BotTokens {
         BotTokens {
             verification_token,
             access_token,
+            access_token_revoked,
         }
     }
 }
