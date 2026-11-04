@@ -68,10 +68,10 @@ jobs:
           BRANCH_NAME="update-$(date +'%Y%m%d%H%M%S')"
           git switch -c "$BRANCH_NAME"
           git add .
-          git commit -m "CI: regenerate [skip ci]" --author="H1rono <54711422+H1rono@users.noreply.github.com>"
+          git commit -m "CI: regenerate [skip ci]"
           git push origin "$BRANCH_NAME"
       - name: create pull request
         run: |
-          gh pr create --title "CI: regenerate" --body "" --base main --assignee H1rono
+          gh pr create --title "CI: regenerate" --body "" --base main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
