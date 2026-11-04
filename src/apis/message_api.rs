@@ -894,8 +894,8 @@ pub async fn search_messages(
     after: Option<String>,
     before: Option<String>,
     r#in: Option<&str>,
-    to: Option<&str>,
-    from: Option<&str>,
+    to: Option<Vec<uuid::Uuid>>,
+    from: Option<Vec<uuid::Uuid>>,
     citation: Option<&str>,
     bot: Option<bool>,
     has_url: Option<bool>,
@@ -931,11 +931,42 @@ pub async fn search_messages(
         local_var_req_builder = local_var_req_builder.query(&[("in", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = to {
-        local_var_req_builder = local_var_req_builder.query(&[("to", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("to".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "to",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = from {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("from", &local_var_str.to_string())]);
+        local_var_req_builder = match "multi" {
+            "multi" => local_var_req_builder.query(
+                &local_var_str
+                    .into_iter()
+                    .map(|p| ("from".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => local_var_req_builder.query(&[(
+                "from",
+                &local_var_str
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
     }
     if let Some(ref local_var_str) = citation {
         local_var_req_builder =
