@@ -476,8 +476,8 @@ Name | Type | Description  | Required | Notes
 **after** | Option<**String**> | 投稿日時が指定日時より後 |  |
 **before** | Option<**String**> | 投稿日時が指定日時より前 |  |
 **r#in** | Option<**uuid::Uuid**> | メッセージが投稿されたチャンネル |  |
-**to** | Option<**uuid::Uuid**> | メンションされたユーザー |  |
-**from** | Option<**uuid::Uuid**> | メッセージを投稿したユーザー |  |
+**to** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | メンションされたユーザー |  |
+**from** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | メッセージを投稿したユーザー |  |
 **citation** | Option<**uuid::Uuid**> | 引用しているメッセージ |  |
 **bot** | Option<**bool**> | メッセージを投稿したユーザーがBotかどうか |  |
 **has_url** | Option<**bool**> | メッセージがURLを含むか |  |
