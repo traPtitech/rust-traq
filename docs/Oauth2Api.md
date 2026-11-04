@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## create_client
 
-> crate::models::OAuth2ClientDetail create_client(post_client_request)
+> models::OAuth2ClientDetail create_client(post_client_request)
 OAuth2クライアントを作成
 
 OAuth2クライアントを作成します。
@@ -36,7 +36,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2ClientDetail**](OAuth2ClientDetail.md)
+[**models::OAuth2ClientDetail**](OAuth2ClientDetail.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_client
 
-> crate::models::GetClient200Response get_client(client_id, detail)
+> models::GetClient200Response get_client(client_id, detail)
 OAuth2クライアント情報を取得
 
 指定したOAuth2クライアントの情報を取得します。 詳細情報の取得には対象のクライアントの管理権限が必要です。
@@ -128,7 +128,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GetClient200Response**](getClient_200_response.md)
+[**models::GetClient200Response**](getClient_200_response.md)
 
 ### Authorization
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_clients
 
-> Vec<crate::models::OAuth2Client> get_clients(all)
+> Vec<models::OAuth2Client> get_clients(all)
 OAuth2クライアントのリストを取得
 
 自身が開発者のOAuth2クライアントのリストを取得します。 `all`が`true`の場合、全開発者の全クライアントのリストを返します。
@@ -158,7 +158,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::OAuth2Client>**](OAuth2Client.md)
+[**Vec<models::OAuth2Client>**](OAuth2Client.md)
 
 ### Authorization
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_my_tokens
 
-> Vec<crate::models::ActiveOAuth2Token> get_my_tokens()
+> Vec<models::ActiveOAuth2Token> get_my_tokens()
 有効トークンのリストを取得
 
 有効な自分に発行されたOAuth2トークンのリストを取得します。
@@ -185,7 +185,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::ActiveOAuth2Token>**](ActiveOAuth2Token.md)
+[**Vec<models::ActiveOAuth2Token>**](ActiveOAuth2Token.md)
 
 ### Authorization
 
@@ -204,7 +204,7 @@ This endpoint does not need any parameter.
 > get_o_auth2_authorize(client_id, response_type, redirect_uri, scope, state, code_challenge, code_challenge_method, nonce, prompt)
 OAuth2 認可エンドポイント
 
-OAuth2 認可エンドポイント
+OAuth2 認可エンドポイント リダイレクト先がhttp(s)以外の場合は、S256のPKCEが必須で、prompt=noneは使用できません。
 
 ### Parameters
 
@@ -212,14 +212,14 @@ OAuth2 認可エンドポイント
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **client_id** | **String** |  | [required] |
-**response_type** | Option<[**OAuth2ResponseType**](.md)> |  |  |
+**response_type** | Option<[**OAuth2ResponseType**](OAuth2ResponseType.md)> |  |  |
 **redirect_uri** | Option<**String**> |  |  |
 **scope** | Option<**String**> |  |  |
 **state** | Option<**String**> |  |  |
 **code_challenge** | Option<**String**> |  |  |
 **code_challenge_method** | Option<**String**> |  |  |
 **nonce** | Option<**String**> |  |  |
-**prompt** | Option<[**OAuth2Prompt**](.md)> |  |  |
+**prompt** | Option<[**OAuth2Prompt**](OAuth2Prompt.md)> |  |  |
 
 ### Return type
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Required | Notes
 > post_o_auth2_authorize(client_id, response_type, redirect_uri, scope, state, code_challenge, code_challenge_method, nonce, prompt)
 OAuth2 認可エンドポイント
 
-OAuth2 認可エンドポイント
+OAuth2 認可エンドポイント リダイレクト先がhttp(s)以外の場合は、S256のPKCEが必須で、prompt=noneは使用できません。
 
 ### Parameters
 
@@ -250,14 +250,14 @@ OAuth2 認可エンドポイント
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **client_id** | **String** |  | [required] |
-**response_type** | Option<[**crate::models::OAuth2ResponseType**](OAuth2ResponseType.md)> |  |  |
+**response_type** | Option<[**models::OAuth2ResponseType**](OAuth2ResponseType.md)> |  |  |
 **redirect_uri** | Option<**String**> |  |  |
 **scope** | Option<**String**> |  |  |
 **state** | Option<**String**> |  |  |
 **code_challenge** | Option<**String**> |  |  |
 **code_challenge_method** | Option<**String**> |  |  |
 **nonce** | Option<**String**> |  |  |
-**prompt** | Option<[**crate::models::OAuth2Prompt**](OAuth2Prompt.md)> |  |  |
+**prompt** | Option<[**models::OAuth2Prompt**](OAuth2Prompt.md)> |  |  |
 
 ### Return type
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_o_auth2_token
 
-> crate::models::OAuth2Token post_o_auth2_token(grant_type, code, redirect_uri, client_id, code_verifier, username, password, scope, refresh_token, client_secret)
+> models::OAuth2Token post_o_auth2_token(grant_type, code, redirect_uri, client_id, code_verifier, username, password, scope, refresh_token, client_secret)
 OAuth2 トークンエンドポイント
 
 OAuth2 トークンエンドポイント
@@ -330,7 +330,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::OAuth2Token**](OAuth2Token.md)
+[**models::OAuth2Token**](OAuth2Token.md)
 
 ### Authorization
 

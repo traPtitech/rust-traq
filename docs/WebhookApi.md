@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**change_webhook_icon**](WebhookApi.md#change_webhook_icon) | **PUT** /webhooks/{webhookId}/icon | Webhookのアイコンを変更
 [**create_webhook**](WebhookApi.md#create_webhook) | **POST** /webhooks | Webhookを新規作成
 [**delete_webhook**](WebhookApi.md#delete_webhook) | **DELETE** /webhooks/{webhookId} | Webhookを削除
+[**delete_webhook_message**](WebhookApi.md#delete_webhook_message) | **DELETE** /webhooks/{webhookId}/messages/{messageId} | Webhookの投稿メッセージを削除
 [**edit_webhook**](WebhookApi.md#edit_webhook) | **PATCH** /webhooks/{webhookId} | Webhook情報を変更
 [**get_webhook**](WebhookApi.md#get_webhook) | **GET** /webhooks/{webhookId} | Webhook情報を取得
 [**get_webhook_icon**](WebhookApi.md#get_webhook_icon) | **GET** /webhooks/{webhookId}/icon | Webhookのアイコンを取得
@@ -29,7 +30,7 @@ Webhookのアイコンを変更
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
-**file** | **std::path::PathBuf** | アイコン画像(2MBまでのpng, jpeg, gif) | [required] |
+**file** | **std::path::PathBuf** | アイコン画像(2MB,`Config.Imaging.MaxPixels`(default: 2560*1600)までのpng, jpeg, gif) | [required] |
 
 ### Return type
 
@@ -49,7 +50,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_webhook
 
-> crate::models::Webhook create_webhook(post_webhook_request)
+> models::Webhook create_webhook(post_webhook_request)
 Webhookを新規作成
 
 Webhookを新規作成します。 `secret`が空文字の場合、insecureウェブフックが作成されます。
@@ -63,7 +64,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Webhook**](Webhook.md)
+[**models::Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -90,6 +91,37 @@ Webhookを削除
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_webhook_message
+
+> delete_webhook_message(webhook_id, message_id)
+Webhookの投稿メッセージを削除
+
+指定されたWebhookが投稿したメッセージを削除します。 アーカイブされているチャンネルのメッセージを削除することはできません。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
+**message_id** | **uuid::Uuid** | メッセージUUID | [required] |
 
 ### Return type
 
@@ -140,7 +172,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_webhook
 
-> crate::models::Webhook get_webhook(webhook_id)
+> models::Webhook get_webhook(webhook_id)
 Webhook情報を取得
 
 指定したWebhookの詳細を取得します。
@@ -154,7 +186,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Webhook**](Webhook.md)
+[**models::Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -200,7 +232,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_webhook_messages
 
-> Vec<crate::models::Message> get_webhook_messages(webhook_id, limit, offset, since, until, inclusive, order)
+> Vec<models::Message> get_webhook_messages(webhook_id, limit, offset, since, until, inclusive, order)
 Webhookの投稿メッセージのリストを取得
 
 指定されたWebhookが投稿したメッセージのリストを返します。
@@ -213,14 +245,14 @@ Name | Type | Description  | Required | Notes
 **webhook_id** | **uuid::Uuid** | WebhookUUID | [required] |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 
 ### Return type
 
-[**Vec<crate::models::Message>**](Message.md)
+[**Vec<models::Message>**](Message.md)
 
 ### Authorization
 
@@ -236,7 +268,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_webhooks
 
-> Vec<crate::models::Webhook> get_webhooks(all)
+> Vec<models::Webhook> get_webhooks(all)
 Webhook情報のリストを取得します
 
 Webhookのリストを取得します。 allがtrueで無い場合は、自分がオーナーのWebhookのリストを返します。
@@ -250,7 +282,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Webhook>**](Webhook.md)
+[**Vec<models::Webhook>**](Webhook.md)
 
 ### Authorization
 

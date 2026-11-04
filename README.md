@@ -26,7 +26,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         bearer_access_token: Some(access_token),
         ..Default::default()
     };
-    let channels = channel_api::get_channels(&conf, Some(true)).await?;
+    let channels = channel_api::get_channels(&conf, Some(true), None).await?;
     println!("there are {} public channels", channels.public.len());
     Ok(())
 }
@@ -48,4 +48,4 @@ traq.default-features = false
 traq.features = ["rustls-tls"]
 ```
 
-For more information, see [docs in reqwest::tls](https://docs.rs/reqwest/0.12/reqwest/tls/index.html).
+For more information, see [docs in reqwest::tls](https://docs.rs/reqwest/0.13/reqwest/tls/index.html).

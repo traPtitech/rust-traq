@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_pin
 
-> crate::models::MessagePin create_pin(message_id)
+> models::MessagePin create_pin(message_id)
 ピン留めする
 
 指定したメッセージをピン留めします。 アーカイブされているチャンネルのメッセージ・存在しないメッセージ・チャンネル当たりの上限数を超えたメッセージのピン留めはできません。
@@ -70,7 +70,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::MessagePin**](MessagePin.md)
+[**models::MessagePin**](MessagePin.md)
 
 ### Authorization
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_direct_messages
 
-> Vec<crate::models::Message> get_direct_messages(user_id, limit, offset, since, until, inclusive, order)
+> Vec<models::Message> get_direct_messages(user_id, limit, offset, since, until, inclusive, order)
 ダイレクトメッセージのリストを取得
 
 指定したユーザーとのダイレクトメッセージのリストを取得します。
@@ -160,14 +160,14 @@ Name | Type | Description  | Required | Notes
 **user_id** | **uuid::Uuid** | ユーザーUUID | [required] |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 
 ### Return type
 
-[**Vec<crate::models::Message>**](Message.md)
+[**Vec<models::Message>**](Message.md)
 
 ### Authorization
 
@@ -183,7 +183,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_message
 
-> crate::models::Message get_message(message_id)
+> models::Message get_message(message_id)
 メッセージを取得
 
 指定したメッセージを取得します。
@@ -197,7 +197,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Message**](Message.md)
+[**models::Message**](Message.md)
 
 ### Authorization
 
@@ -213,7 +213,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_message_clips
 
-> Vec<crate::models::MessageClip> get_message_clips(message_id)
+> Vec<models::MessageClip> get_message_clips(message_id)
 自分のクリップを取得
 
 対象のメッセージの自分のクリップの一覧を返します。
@@ -227,7 +227,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::MessageClip>**](MessageClip.md)
+[**Vec<models::MessageClip>**](MessageClip.md)
 
 ### Authorization
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_message_stamps
 
-> Vec<crate::models::MessageStamp> get_message_stamps(message_id)
+> Vec<models::MessageStamp> get_message_stamps(message_id)
 メッセージのスタンプリストを取得
 
 指定したメッセージに押されているスタンプのリストを取得します。
@@ -257,7 +257,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::MessageStamp>**](MessageStamp.md)
+[**Vec<models::MessageStamp>**](MessageStamp.md)
 
 ### Authorization
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_messages
 
-> Vec<crate::models::Message> get_messages(channel_id, limit, offset, since, until, inclusive, order)
+> Vec<models::Message> get_messages(channel_id, limit, offset, since, until, inclusive, order)
 チャンネルメッセージのリストを取得
 
 指定したチャンネルのメッセージのリストを取得します。
@@ -286,14 +286,14 @@ Name | Type | Description  | Required | Notes
 **channel_id** | **uuid::Uuid** | チャンネルUUID | [required] |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 
 ### Return type
 
-[**Vec<crate::models::Message>**](Message.md)
+[**Vec<models::Message>**](Message.md)
 
 ### Authorization
 
@@ -309,7 +309,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pin
 
-> crate::models::MessagePin get_pin(message_id)
+> models::MessagePin get_pin(message_id)
 ピン留めを取得
 
 指定したメッセージのピン留め情報を取得します。
@@ -323,7 +323,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::MessagePin**](MessagePin.md)
+[**models::MessagePin**](MessagePin.md)
 
 ### Authorization
 
@@ -339,7 +339,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_direct_message
 
-> crate::models::Message post_direct_message(user_id, post_message_request)
+> models::Message post_direct_message(user_id, post_message_request)
 ダイレクトメッセージを送信
 
 指定したユーザーにダイレクトメッセージを送信します。
@@ -354,7 +354,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Message**](Message.md)
+[**models::Message**](Message.md)
 
 ### Authorization
 
@@ -370,7 +370,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_message
 
-> crate::models::Message post_message(channel_id, post_message_request)
+> models::Message post_message(channel_id, post_message_request)
 チャンネルにメッセージを投稿
 
 指定したチャンネルにメッセージを投稿します。 embedをtrueに指定すると、メッセージ埋め込みが自動で行われます。 アーカイブされているチャンネルに投稿することはできません。
@@ -385,7 +385,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Message**](Message.md)
+[**models::Message**](Message.md)
 
 ### Authorization
 
@@ -462,7 +462,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_messages
 
-> crate::models::MessageSearchResult search_messages(word, after, before, r#in, to, from, citation, bot, has_url, has_attachments, has_image, has_video, has_audio, limit, offset, sort)
+> models::MessageSearchResult search_messages(word, after, before, r#in, to, from, citation, bot, has_url, has_attachments, has_image, has_video, has_audio, limit, offset, sort)
 メッセージを検索
 
 メッセージを検索します。
@@ -473,11 +473,11 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **word** | Option<**String**> | 検索ワード Simple-Query-String-Syntaxをパースして検索します  |  |
-**after** | Option<**String**> | 投稿日時が指定日時より後 |  |
-**before** | Option<**String**> | 投稿日時が指定日時より前 |  |
+**after** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 投稿日時が指定日時より後 |  |
+**before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 投稿日時が指定日時より前 |  |
 **r#in** | Option<**uuid::Uuid**> | メッセージが投稿されたチャンネル |  |
-**to** | Option<**uuid::Uuid**> | メンションされたユーザー |  |
-**from** | Option<**uuid::Uuid**> | メッセージを投稿したユーザー |  |
+**to** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> | メンションされたユーザーまたはグループの UUID |  |
+**from** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> | メッセージを投稿したユーザーの UUID またはそのユーザーが所属するユーザーグループの UUID  |  |
 **citation** | Option<**uuid::Uuid**> | 引用しているメッセージ |  |
 **bot** | Option<**bool**> | メッセージを投稿したユーザーがBotかどうか |  |
 **has_url** | Option<**bool**> | メッセージがURLを含むか |  |
@@ -485,13 +485,13 @@ Name | Type | Description  | Required | Notes
 **has_image** | Option<**bool**> | メッセージが画像を含むか |  |
 **has_video** | Option<**bool**> | メッセージが動画を含むか |  |
 **has_audio** | Option<**bool**> | メッセージが音声ファイルを含むか |  |
-**limit** | Option<**i32**> | 検索結果から取得するメッセージの最大件数 |  |
-**offset** | Option<**i32**> | 検索結果から取得するメッセージのオフセット |  |
+**limit** | Option<**i32**> | 検索結果から取得するメッセージの最大件数 limitとoffsetの合計は10000以下である必要があります |  |[default to 20]
+**offset** | Option<**i32**> | 検索結果から取得するメッセージのオフセット limitとoffsetの合計は10000以下である必要があります (limitを省略した場合は20として計算されます) |  |[default to 0]
 **sort** | Option<**String**> | ソート順 (作成日時が新しい `createdAt`, 作成日時が古い `-createdAt`, 更新日時が新しい `updatedAt`, 更新日時が古い `-updatedAt`) |  |[default to -createdAt]
 
 ### Return type
 
-[**crate::models::MessageSearchResult**](MessageSearchResult.md)
+[**models::MessageSearchResult**](MessageSearchResult.md)
 
 ### Authorization
 

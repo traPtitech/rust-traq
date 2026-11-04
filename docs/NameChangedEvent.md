@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user_id** | [**uuid::Uuid**](uuid::Uuid.md) | 変更者UUID | 
+**user_id** | **uuid::Uuid** | 変更者UUID | 
 **before** | **String** | 変更前チャンネル名 | 
 **after** | **String** | 変更後チャンネル名 | 
 

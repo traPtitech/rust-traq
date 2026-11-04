@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## create_pin
 
-> crate::models::MessagePin create_pin(message_id)
+> models::MessagePin create_pin(message_id)
 ピン留めする
 
 指定したメッセージをピン留めします。 アーカイブされているチャンネルのメッセージ・存在しないメッセージ・チャンネル当たりの上限数を超えたメッセージのピン留めはできません。
@@ -27,7 +27,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::MessagePin**](MessagePin.md)
+[**models::MessagePin**](MessagePin.md)
 
 ### Authorization
 
@@ -43,7 +43,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_channel_pins
 
-> Vec<crate::models::Pin> get_channel_pins(channel_id)
+> Vec<models::Pin> get_channel_pins(channel_id)
 チャンネルピンのリストを取得
 
 指定したチャンネルにピン留めされているピンメッセージのリストを取得します。
@@ -57,7 +57,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Pin>**](Pin.md)
+[**Vec<models::Pin>**](Pin.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pin
 
-> crate::models::MessagePin get_pin(message_id)
+> models::MessagePin get_pin(message_id)
 ピン留めを取得
 
 指定したメッセージのピン留め情報を取得します。
@@ -87,7 +87,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::MessagePin**](MessagePin.md)
+[**models::MessagePin**](MessagePin.md)
 
 ### Authorization
 

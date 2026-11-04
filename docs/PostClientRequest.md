@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** | クライアント名 | 
-**callback_url** | **String** | コールバックURL | 
-**scopes** | [**Vec<crate::models::OAuth2Scope>**](OAuth2Scope.md) | 要求スコープの配列 | 
+**callback_url** | **String** | コールバックURL (URL、またはcom.example.app:/callbackのようなリバースドメイン形式のスキームのURI) | 
+**scopes** | [**Vec<models::OAuth2Scope>**](OAuth2Scope.md) | 要求スコープの配列 | 
 **description** | **String** | 説明 | 
 **confidential** | Option<**bool**> | confidential client なら true, public cleint なら false | [optional][default to false]
 

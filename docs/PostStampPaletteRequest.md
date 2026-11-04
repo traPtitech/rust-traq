@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**stamps** | [**Vec<uuid::Uuid>**](uuid::Uuid.md) | パレット内のスタンプのUUID配列 | 
+**stamps** | **HashSet<uuid::Uuid>** | パレット内のスタンプのUUID配列 | 
 **name** | **String** | パレット名 | 
 **description** | **String** | 説明 | 
 

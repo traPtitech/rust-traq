@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **uuid::Uuid** | ファイルUUID | [required] |
-**dl** | Option<**i32**> | 1を指定するとレスポンスにContent-Dispositionヘッダーが付与されます |  |
+**dl** | Option<**i32**> | このクエリパラメータは廃止されており、意味を持ちません（現在、このパラメータが0の場合も1の場合もレスポンスにはContent-Dispositionヘッダーが付与されます） |  |
 
 ### Return type
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_file_meta
 
-> crate::models::FileInfo get_file_meta(file_id)
+> models::FileInfo get_file_meta(file_id)
 ファイルメタを取得
 
 指定したファイルのメタ情報を取得します。 指定したファイルへのアクセス権限が必要です。
@@ -90,7 +90,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FileInfo**](FileInfo.md)
+[**models::FileInfo**](FileInfo.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_files
 
-> Vec<crate::models::FileInfo> get_files(channel_id, limit, offset, since, until, inclusive, order, mine)
+> Vec<models::FileInfo> get_files(channel_id, limit, offset, since, until, inclusive, order, mine)
 ファイルメタのリストを取得
 
 指定したクエリでファイルメタのリストを取得します。 クエリパラメータ`channelId`, `mine`の少なくともいずれかが必須です。
@@ -119,15 +119,15 @@ Name | Type | Description  | Required | Notes
 **channel_id** | Option<**uuid::Uuid**> | アップロード先チャンネルUUID |  |
 **limit** | Option<**i32**> | 取得する件数 |  |
 **offset** | Option<**i32**> | 取得するオフセット |  |[default to 0]
-**since** | Option<**String**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
-**until** | Option<**String**> | 取得する時間範囲の終了日時 |  |
+**since** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の開始日時 |  |[default to 0000-01-01T00:00Z]
+**until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | 取得する時間範囲の終了日時 |  |
 **inclusive** | Option<**bool**> | 範囲の端を含めるかどうか |  |[default to false]
 **order** | Option<**String**> | 昇順か降順か |  |[default to desc]
 **mine** | Option<**bool**> | アップロード者が自分のファイルのみを取得するか |  |[default to false]
 
 ### Return type
 
-[**Vec<crate::models::FileInfo>**](FileInfo.md)
+[**Vec<models::FileInfo>**](FileInfo.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **uuid::Uuid** | ファイルUUID | [required] |
-**r#type** | Option<[**ThumbnailType**](.md)> | 取得するサムネイルのタイプ |  |
+**r#type** | Option<[**ThumbnailType**](ThumbnailType.md)> | 取得するサムネイルのタイプ |  |
 
 ### Return type
 
@@ -167,14 +167,14 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/jpeg
+- **Accept**: image/png, image/jpeg, image/svg+xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## post_file
 
-> crate::models::FileInfo post_file(file, channel_id)
+> models::FileInfo post_file(file, channel_id)
 ファイルをアップロード
 
 指定したチャンネルにファイルをアップロードします。 アーカイブされているチャンネルにはアップロード出来ません。
@@ -189,7 +189,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FileInfo**](FileInfo.md)
+[**models::FileInfo**](FileInfo.md)
 
 ### Authorization
 

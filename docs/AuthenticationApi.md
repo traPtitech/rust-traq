@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## get_my_external_accounts
 
-> Vec<crate::models::ExternalProviderUser> get_my_external_accounts()
+> Vec<models::ExternalProviderUser> get_my_external_accounts()
 外部ログインアカウント一覧を取得
 
 自分に紐付けられている外部ログインアカウント一覧を取得します。
@@ -27,7 +27,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::ExternalProviderUser>**](ExternalProviderUser.md)
+[**Vec<models::ExternalProviderUser>**](ExternalProviderUser.md)
 
 ### Authorization
 
@@ -43,7 +43,7 @@ This endpoint does not need any parameter.
 
 ## get_my_sessions
 
-> Vec<crate::models::LoginSession> get_my_sessions()
+> Vec<models::LoginSession> get_my_sessions()
 自分のログインセッションリストを取得
 
 自分のログインセッションのリストを取得します。
@@ -54,7 +54,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::LoginSession>**](LoginSession.md)
+[**Vec<models::LoginSession>**](LoginSession.md)
 
 ### Authorization
 
