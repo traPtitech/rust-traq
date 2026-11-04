@@ -1,6 +1,6 @@
 [package]
 name = "traq"
-version = "0.1.5"
+version = "0.2.0"
 authors = ["OpenAPI Generator team and contributors", "H1rono"]
 description = "⚠️ Community Driven ⚠️ traQ v3 API"
 license-file = "LICENSE"
