@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Cache build
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
       - name: Add components
         run: |
           rustup component add rustfmt
@@ -25,4 +25,12 @@ jobs:
       - name: Check format
         run: cargo fmt --all -- --check
       - name: Lint
-        run: cargo clippy --all-targets --all-features -- -A clippy::too_many_arguments -D warnings
+        # OpenAPI Generator 6.3 emits these model and API patterns.
+        run: >-
+          cargo clippy --all-targets --all-features --
+          -A clippy::too_many_arguments
+          -A clippy::derivable_impls
+          -A clippy::empty_docs
+          -A clippy::empty_line_after_doc_comments
+          -A clippy::to_string_trait_impl
+          -D warnings
