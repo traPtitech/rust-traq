@@ -204,7 +204,7 @@ This endpoint does not need any parameter.
 > get_o_auth2_authorize(client_id, response_type, redirect_uri, scope, state, code_challenge, code_challenge_method, nonce, prompt)
 OAuth2 認可エンドポイント
 
-OAuth2 認可エンドポイント
+OAuth2 認可エンドポイント リダイレクト先がhttp(s)以外の場合は、S256のPKCEが必須で、prompt=noneは使用できません。
 
 ### Parameters
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Required | Notes
 > post_o_auth2_authorize(client_id, response_type, redirect_uri, scope, state, code_challenge, code_challenge_method, nonce, prompt)
 OAuth2 認可エンドポイント
 
-OAuth2 認可エンドポイント
+OAuth2 認可エンドポイント リダイレクト先がhttp(s)以外の場合は、S256のPKCEが必須で、prompt=noneは使用できません。
 
 ### Parameters
 
