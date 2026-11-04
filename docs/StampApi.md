@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**edit_stamp_palette**](StampApi.md#edit_stamp_palette) | **PATCH** /stamp-palettes/{paletteId} | スタンプパレットを編集
 [**get_message_stamps**](StampApi.md#get_message_stamps) | **GET** /messages/{messageId}/stamps | メッセージのスタンプリストを取得
 [**get_my_stamp_history**](StampApi.md#get_my_stamp_history) | **GET** /users/me/stamp-history | スタンプ履歴を取得
+[**get_my_stamp_recommendations**](StampApi.md#get_my_stamp_recommendations) | **GET** /users/me/stamp-recommendations | スタンプレコメンドを取得
 [**get_stamp**](StampApi.md#get_stamp) | **GET** /stamps/{stampId} | スタンプ情報を取得
 [**get_stamp_image**](StampApi.md#get_stamp_image) | **GET** /stamps/{stampId}/image | スタンプ画像を取得
 [**get_stamp_palette**](StampApi.md#get_stamp_palette) | **GET** /stamp-palettes/{paletteId} | スタンプパレットを取得
@@ -330,6 +331,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_my_stamp_recommendations
+
+> Vec<crate::models::GetMyStampRecommendations200ResponseInner> get_my_stamp_recommendations(limit)
+スタンプレコメンドを取得
+
+自分のスタンプレコメンドを最大200件まで取得します。 結果は推薦度の高い順で返されます。 スタンプを使用したことがないユーザーの場合は空配列が返されます。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**limit** | Option<**i32**> | 件数 |  |[default to 100]
+
+### Return type
+
+[**Vec<crate::models::GetMyStampRecommendations200ResponseInner>**](getMyStampRecommendations_200_response_inner.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_stamp
 
 > crate::models::Stamp get_stamp(stamp_id)
@@ -385,7 +416,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: image/png, image/gif, image/jpeg
+- **Accept**: image/png, image/gif, image/jpeg, image/svg+xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
