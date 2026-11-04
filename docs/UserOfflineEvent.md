@@ -1,0 +1,12 @@
+# UserOfflineEvent
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | [**uuid::Uuid**](uuid::Uuid.md) | オフラインになったユーザーのId | 
+**last_online** | **String** | 最後の接続の切断をサーバーが検出した日時 | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

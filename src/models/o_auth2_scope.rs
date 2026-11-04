@@ -23,6 +23,8 @@ pub enum OAuth2Scope {
     Write,
     #[serde(rename = "manage_bot")]
     ManageBot,
+    #[serde(rename = "qall")]
+    Qall,
 }
 
 impl ToString for OAuth2Scope {
@@ -33,6 +35,7 @@ impl ToString for OAuth2Scope {
             Self::Read => String::from("read"),
             Self::Write => String::from("write"),
             Self::ManageBot => String::from("manage_bot"),
+            Self::Qall => String::from("qall"),
         }
     }
 }

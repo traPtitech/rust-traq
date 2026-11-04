@@ -476,8 +476,8 @@ Name | Type | Description  | Required | Notes
 **after** | Option<**String**> | 投稿日時が指定日時より後 |  |
 **before** | Option<**String**> | 投稿日時が指定日時より前 |  |
 **r#in** | Option<**uuid::Uuid**> | メッセージが投稿されたチャンネル |  |
-**to** | Option<**uuid::Uuid**> | メンションされたユーザー |  |
-**from** | Option<**uuid::Uuid**> | メッセージを投稿したユーザー |  |
+**to** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | メンションされたユーザーまたはグループの UUID |  |
+**from** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | メッセージを投稿したユーザーの UUID またはそのユーザーが所属するユーザーグループの UUID  |  |
 **citation** | Option<**uuid::Uuid**> | 引用しているメッセージ |  |
 **bot** | Option<**bool**> | メッセージを投稿したユーザーがBotかどうか |  |
 **has_url** | Option<**bool**> | メッセージがURLを含むか |  |
@@ -485,8 +485,8 @@ Name | Type | Description  | Required | Notes
 **has_image** | Option<**bool**> | メッセージが画像を含むか |  |
 **has_video** | Option<**bool**> | メッセージが動画を含むか |  |
 **has_audio** | Option<**bool**> | メッセージが音声ファイルを含むか |  |
-**limit** | Option<**i32**> | 検索結果から取得するメッセージの最大件数 |  |
-**offset** | Option<**i32**> | 検索結果から取得するメッセージのオフセット |  |
+**limit** | Option<**i32**> | 検索結果から取得するメッセージの最大件数 limitとoffsetの合計は10000以下である必要があります |  |[default to 20]
+**offset** | Option<**i32**> | 検索結果から取得するメッセージのオフセット limitとoffsetの合計は10000以下である必要があります (limitを省略した場合は20として計算されます) |  |[default to 0]
 **sort** | Option<**String**> | ソート順 (作成日時が新しい `createdAt`, 作成日時が古い `-createdAt`, 更新日時が新しい `updatedAt`, 更新日時が古い `-updatedAt`) |  |[default to -createdAt]
 
 ### Return type

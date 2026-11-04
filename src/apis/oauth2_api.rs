@@ -11,10 +11,7 @@
 use reqwest;
 
 use super::{configuration, Error};
-use crate::{
-    apis::ResponseContent,
-    models::{OAuth2Prompt, OAuth2ResponseType},
-};
+use crate::apis::ResponseContent;
 
 /// struct for typed errors of method [`create_client`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -411,7 +408,7 @@ pub async fn get_my_tokens(
     }
 }
 
-/// OAuth2 認可エンドポイント
+/// OAuth2 認可エンドポイント リダイレクト先がhttp(s)以外の場合は、S256のPKCEが必須で、prompt=noneは使用できません。
 pub async fn get_o_auth2_authorize(
     configuration: &configuration::Configuration,
     client_id: &str,
@@ -496,7 +493,7 @@ pub async fn get_o_auth2_authorize(
     }
 }
 
-/// OAuth2 認可エンドポイント
+/// OAuth2 認可エンドポイント リダイレクト先がhttp(s)以外の場合は、S256のPKCEが必須で、prompt=noneは使用できません。
 pub async fn post_o_auth2_authorize(
     configuration: &configuration::Configuration,
     client_id: &str,

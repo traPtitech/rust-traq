@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **groups** | [**Vec<uuid::Uuid>**](uuid::Uuid.md) | 所属グループのUUIDの配列 | 
 **tags** | [**Vec<crate::models::UserTag>**](UserTag.md) | タグリスト | 
 **updated_at** | **String** | 更新日時 | 
-**last_online** | Option<**String**> | 最終オンライン日時 | 
+**last_online** | Option<**String**> | 最後の接続の切断をサーバーが検出した日時 | 
 **twitter_id** | **String** | Twitter ID | 
 **name** | **String** | ユーザー名 | 
 **display_name** | **String** | ユーザー表示名 | 

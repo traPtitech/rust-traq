@@ -15,7 +15,7 @@ pub struct PostClientRequest {
     /// クライアント名
     #[serde(rename = "name")]
     pub name: String,
-    /// コールバックURL
+    /// コールバックURL (URL、またはcom.example.app:/callbackのようなリバースドメイン形式のスキームのURI)
     #[serde(rename = "callbackUrl")]
     pub callback_url: String,
     /// 要求スコープの配列

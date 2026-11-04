@@ -27,7 +27,7 @@ pub struct MyUserDetail {
     /// 更新日時
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    /// 最終オンライン日時
+    /// 最後の接続の切断をサーバーが検出した日時
     #[serde(rename = "lastOnline", deserialize_with = "Option::deserialize")]
     pub last_online: Option<String>,
     /// Twitter ID

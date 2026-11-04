@@ -18,6 +18,9 @@ pub struct PostMessageRequest {
     /// メンション・チャンネルリンクを自動埋め込みするか
     #[serde(rename = "embed", skip_serializing_if = "Option::is_none")]
     pub embed: Option<bool>,
+    /// メッセージ送信の確認に使うことができる任意の識別子(投稿でのみ使用可)
+    #[serde(rename = "nonce", skip_serializing_if = "Option::is_none")]
+    pub nonce: Option<String>,
 }
 
 impl PostMessageRequest {
@@ -26,6 +29,7 @@ impl PostMessageRequest {
         PostMessageRequest {
             content,
             embed: None,
+            nonce: None,
         }
     }
 }

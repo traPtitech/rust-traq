@@ -18,7 +18,7 @@ pub struct PatchClientRequest {
     /// 説明
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    /// コールバックURL
+    /// コールバックURL (URL、またはcom.example.app:/callbackのようなリバースドメイン形式のスキームのURI)
     #[serde(rename = "callbackUrl", skip_serializing_if = "Option::is_none")]
     pub callback_url: Option<String>,
     /// クライアント開発者UUID

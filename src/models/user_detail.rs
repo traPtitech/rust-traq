@@ -32,7 +32,7 @@ pub struct UserDetail {
     /// Twitter ID
     #[serde(rename = "twitterId")]
     pub twitter_id: String,
-    /// 最終オンライン日時
+    /// 最後の接続の切断をサーバーが検出した日時
     #[serde(rename = "lastOnline", deserialize_with = "Option::deserialize")]
     pub last_online: Option<String>,
     /// 更新日時
