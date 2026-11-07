@@ -163,6 +163,8 @@ pub enum GetStampsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveMessageStampError {
+    Status400(),
+    Status403(),
     Status404(),
     UnknownValue(serde_json::Value),
 }
@@ -1051,15 +1053,17 @@ pub async fn get_stamps(
     }
 }
 
-/// 指定したメッセージから指定した自身が押したスタンプを削除します。
+/// 指定したメッセージから指定したユーザーの指定したスタンプを削除します。
 pub async fn remove_message_stamp(
     configuration: &configuration::Configuration,
     message_id: &str,
     stamp_id: &str,
+    user_ids: Option<Vec<uuid::Uuid>>,
 ) -> Result<(), Error<RemoveMessageStampError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_message_id = message_id;
     let p_path_stamp_id = stamp_id;
+    let p_query_user_ids = user_ids;
 
     let uri_str = format!(
         "{}/messages/{messageId}/stamps/{stampId}",
@@ -1071,6 +1075,25 @@ pub async fn remove_message_stamp(
         .client
         .request(reqwest::Method::DELETE, &uri_str);
 
+    if let Some(ref param_value) = p_query_user_ids {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("userIds".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "userIds",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }

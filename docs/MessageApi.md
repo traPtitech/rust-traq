@@ -401,10 +401,10 @@ Name | Type | Description  | Required | Notes
 
 ## remove_message_stamp
 
-> remove_message_stamp(message_id, stamp_id)
+> remove_message_stamp(message_id, stamp_id, user_ids)
 スタンプを消す
 
-指定したメッセージから指定した自身が押したスタンプを削除します。
+指定したメッセージから指定したユーザーの指定したスタンプを削除します。
 
 ### Parameters
 
@@ -413,6 +413,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **message_id** | **uuid::Uuid** | メッセージUUID | [required] |
 **stamp_id** | **uuid::Uuid** | スタンプUUID | [required] |
+**user_ids** | Option<[**Vec<uuid::Uuid>**](Uuid__Uuid.md)> | スタンプを削除する対象のユーザーIDです。 未指定の場合は、自分が押したスタンプを削除します。 自分のユーザーIDのみを指定する場合は、通常ユーザーもBotも利用できます。 他のユーザーIDを指定できるのはBotのみで、自分のメッセージに対してのみ利用できます。 |  |
 
 ### Return type
 
