@@ -249,7 +249,7 @@ Name | Type | Description  | Required | Notes
 > models::ChannelPath get_channel_path(channel_id)
 指定したチャンネルパスを取得
 
-指定されたチャンネルのパスを取得します。
+指定されたチャンネルのパスを取得します。このapiの利用は現在非推奨です。
 
 ### Parameters
 
