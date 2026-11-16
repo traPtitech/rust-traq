@@ -558,7 +558,8 @@ pub async fn get_channel_events(
     }
 }
 
-/// 指定されたチャンネルのパスを取得します。
+/// 指定されたチャンネルのパスを取得します。このapiの利用は現在非推奨です。
+#[deprecated]
 pub async fn get_channel_path(
     configuration: &configuration::Configuration,
     channel_id: &str,
